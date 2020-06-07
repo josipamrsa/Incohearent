@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "JD0Oz6+6Bl+YbZPzzZ8TfRggfIXzlS68hajQI+UZFNvUECyghmMe7bFfTrpPI5ng+tn6KnGz5rFTCu/ub/Z2FA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PMF\\Desktop\\Projekt\\Incohearent\\Incohearent\\Incohearent.iOS\\Incohearent.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PMF\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.3.1\\xamarin.essentials.1.3.1.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.4.0.991265\\xamarin.forms.4.4.0.991265.nupkg.sha512"
+  ],
+  "logs": []
+}
