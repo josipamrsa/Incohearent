@@ -6,10 +6,23 @@
              mc:Ignorable="d"
              x:Class="Incohearent.Views.LoginPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="MasterLayout">
+
+            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+                <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red" />
+                <Image x:Name="LoginIcon" Source="icon.png" Margin="0,0,0,0" />
+
+            </StackLayout>
+
+            <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
+
+                <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true"></ActivityIndicator>
+
+                <Label x:Name="LBLUser" Text="Username" />
+                <Entry x:Name="EnUser" Placeholder="Username" />
+                <Button x:Name="BTNSignIn" Text="Sign in" Clicked="SignIntoLobby"/>
+            </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

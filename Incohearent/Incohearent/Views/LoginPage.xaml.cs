@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Incohearent.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +17,14 @@ namespace Incohearent.Views
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void SignIntoLobby(object sender, EventArgs e)
+        {
+            User u = new User(EnUser.Text, "127.0.0.1"); // test
+            if (u.CheckInformation())  { DisplayAlert("Information", "Success", "OK"); }
+            else
+                DisplayAlert("Information", "Login Failed", "OK");
         }
     }
 }
