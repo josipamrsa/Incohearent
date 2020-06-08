@@ -9,7 +9,7 @@ namespace Incohearent.Models
     {
         [PrimaryKey]
         [AutoIncrement]
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string IpAddress { get; set; }
 
