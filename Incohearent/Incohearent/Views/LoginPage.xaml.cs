@@ -17,6 +17,16 @@ namespace Incohearent.Views
         public LoginPage()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            BackgroundColor = Constants.BackgroundColor;
+            LBLUser.TextColor = Constants.MainTextColor;
+            ActivitySpinner.IsVisible = false;
+            LoginIcon.HeightRequest = Constants.LoginIconHeight;
+            App.StartCheckIfInternet(lbl_NoInternet, this);
         }
 
         private void SignIntoLobby(object sender, EventArgs e)
