@@ -32,9 +32,34 @@ namespace Incohearent.Views
         private void SignIntoLobby(object sender, EventArgs e)
         {
             User u = new User(EnUser.Text, "127.0.0.1"); // test
-            if (u.CheckInformation())  { DisplayAlert("Information", "Success", "OK"); }
+
+            if (u.CheckInformation())  { 
+                DisplayAlert("Information", "Success", "OK");
+                CheckWiFi();
+                LobbyAssign();
+            }
             else
                 DisplayAlert("Information", "Login Failed", "OK");
         }
+        private void CheckWiFi()
+        {
+            /*
+            
+            Aplikacija je zamišljena da se korisnici spajaju u određeni lobby na način da bi svi trebali biti
+            na istom WiFi-ju ako žele igrati skupa. Primjerice, u grupi od 4 ljudi, ako jedan nije spojen na WiFi
+            na koji su svi ostali spojeni, on će se pojaviti u drukčijem lobbyju nego ostali. Igra i jest zamišljena
+            tako da se igra u grupi, kao i originalna kartaška igra.
+            
+            */
+        }
+
+        private void LobbyAssign()
+        {
+            /*
+            
+            Ova metoda će, nakon provjere WiFi-ja, stavljati igrača u prikladnu sobu/lobby.
+            
+            */
+        }       
     }
 }

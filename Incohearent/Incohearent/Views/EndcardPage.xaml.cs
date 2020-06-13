@@ -15,6 +15,21 @@ namespace Incohearent.Views
         public EndcardPage()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            ShowStatisticForPlayer();
+        }
+
+        private void ShowStatisticForPlayer()
+        {
+            /*
+             
+            Statistika za igrača
+             
+            */
         }
     }
 }
