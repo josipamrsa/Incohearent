@@ -1,4 +1,5 @@
-﻿using Incohearent.Data;
+﻿using Incohearent.Controllers;
+using Incohearent.Data;
 using Incohearent.Models;
 using Incohearent.Views;
 using System;
@@ -11,11 +12,37 @@ namespace Incohearent
 {
     public partial class App : Application
     {
+        // Kontrole
         private static Label labelScreen;
-        private static bool hasInternet;
         private static Page currentPage;
+
+        // Internet
+        private static bool hasInternet;      
         private static Timer timer;
         private static bool noInternetShow;
+
+        // REST API
+        static RestApiService restApi;
+
+        // User Database
+
+        static UserDatabaseController udc;
+
+        public static RestApiService RestApi
+        {
+            get
+            {
+                if (restApi==null) { restApi = new RestApiService(); }
+                return restApi;
+            }
+        }
+        public static UserDatabaseController UserDb
+        {
+            get {
+                if (udc == null) { udc = new UserDatabaseController(); }
+                return udc;
+            }
+        }
 
         public App()
         {

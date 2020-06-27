@@ -6,19 +6,22 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Net;
+using Android.Net.Wifi;
 using Android.OS;
 using Android.Runtime;
+using Android.Text.Format;
 using Android.Views;
 using Android.Widget;
 using Incohearent.Data;
 using Incohearent.Droid.Data;
+using Xamarin.Essentials;
 
 [assembly: Xamarin.Forms.Dependency(typeof(NetworkConnection))]
 
 namespace Incohearent.Droid.Data
 {
     public class NetworkConnection : INetworkConnection
-    {
+    {              
         public bool IsConnected { get; set; }
         public void CheckNetworkConnection()
         {
@@ -34,6 +37,23 @@ namespace Incohearent.Droid.Data
                 IsConnected = false;
             }
 
+        }
+        
+        public string GetIpAddressDevice()
+        {
+
+            WifiManager wifiManager = (WifiManager)(Application.Context.GetSystemService(Context.WifiService));
+            WifiInfo wifiInfo;
+            string ipDevice = "";
+
+            wifiInfo = wifiManager.ConnectionInfo;
+            if (wifiInfo.SupplicantState == SupplicantState.Completed)
+            {
+                
+                ipDevice = Formatter.FormatIpAddress(wifiInfo.IpAddress);
+            }
+
+            return ipDevice;
         }
     }
 }

@@ -11,13 +11,15 @@ namespace Incohearent.Models
         [AutoIncrement]
         public int UserId { get; set; }
         public string Username { get; set; }
-        public string IpAddress { get; set; }
+        public string PrivateAddress { get; set; }
+        public string PublicAddress { get; set; }
 
         public User() { }
-        public User(string username, string ipAddr)
+        public User(string username, string publAddr, string privAddr)
         {
             this.Username = username;
-            this.IpAddress = ipAddr;
+            this.PrivateAddress = privAddr;
+            this.PublicAddress = publAddr;
         }
 
         public bool CheckInformation()

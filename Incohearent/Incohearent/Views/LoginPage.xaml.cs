@@ -1,11 +1,12 @@
-﻿using Incohearent.Models;
+﻿using Incohearent.Data;
+using Incohearent.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +14,7 @@ namespace Incohearent.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
-    {
+    {     
         public LoginPage()
         {
             InitializeComponent();
@@ -31,17 +32,10 @@ namespace Incohearent.Views
 
         private void SignIntoLobby(object sender, EventArgs e)
         {
-            User u = new User(EnUser.Text, "127.0.0.1"); // test
-
-            if (u.CheckInformation())  { 
-                DisplayAlert("Information", "Success", "OK");
-                CheckWiFi();
-                LobbyAssign();
-            }
-            else
-                DisplayAlert("Information", "Login Failed", "OK");
+            RegisterUser(EnUser.Text);
+            LobbyAssign();
         }
-        private void CheckWiFi()
+        private void RegisterUser(string username)
         {
             /*
             
@@ -51,6 +45,28 @@ namespace Incohearent.Views
             tako da se igra u grupi, kao i originalna kartaška igra.
             
             */
+
+            var networkConnection = DependencyService.Get<INetworkConnection>();
+            string publicAddress = App.RestApi.GetPublicIpAddress();
+            string privateAddress = networkConnection.GetIpAddressDevice();
+
+            try
+            {
+                if (!username.Equals(""))
+                {                   
+                    User u = new User(username, publicAddress, privateAddress);
+                    System.Diagnostics.Debug.WriteLine(u.Username + ">>" + u.PrivateAddress + ", " + u.PublicAddress);
+                    //App.UserDb.SaveUser(u);
+                    DisplayAlert("Login Succesful", "Proceed!", "OK");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                DisplayAlert("Login Failed", "Please choose a name!", "OK");
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+            }        
         }
 
         private void LobbyAssign()

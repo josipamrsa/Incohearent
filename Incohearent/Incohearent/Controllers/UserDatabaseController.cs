@@ -37,7 +37,9 @@ namespace Incohearent.Controllers
                     db.Update(u);
                     return u.UserId;
                 }
-                else { return db.Insert(u); }
+                else {
+                    return db.Insert(u);                    
+                }
             }
         }
 
