@@ -40,6 +40,8 @@ namespace Incohearent.Controllers
                 else {
                     return db.Insert(u);                    
                 }
+
+                
             }
         }
 

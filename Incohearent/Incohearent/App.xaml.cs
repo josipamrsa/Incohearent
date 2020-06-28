@@ -132,7 +132,7 @@ namespace Incohearent
         private static async Task ShowDisplayAlert()
         {
             noInternetShow = false;
-            await currentPage.DisplayAlert("Internet", "Device has no internet, please reconnect", "OK");
+            await currentPage.DisplayAlert(Constants.NoInternetTitle, Constants.NoInternetWarning, "Got it!");
             noInternetShow = false;
         }
     }

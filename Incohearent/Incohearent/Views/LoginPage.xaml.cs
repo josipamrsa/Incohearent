@@ -31,7 +31,7 @@ namespace Incohearent.Views
         }
 
         private void SignIntoLobby(object sender, EventArgs e)
-        {
+        {            
             RegisterUser(EnUser.Text);
             LobbyAssign();
         }
@@ -50,13 +50,15 @@ namespace Incohearent.Views
             string publicAddress = App.RestApi.GetPublicIpAddress();
             string privateAddress = networkConnection.GetIpAddressDevice();
 
+            if (!networkConnection.UserIsOnWifi()) DisplayAlert(Constants.NotOnWifiTitle, Constants.NotOnWifiWarning, "Got it!");
+
             try
             {
                 if (!username.Equals(""))
                 {                   
                     User u = new User(username, publicAddress, privateAddress);
-                    System.Diagnostics.Debug.WriteLine(u.Username + ">>" + u.PrivateAddress + ", " + u.PublicAddress);
-                    //App.UserDb.SaveUser(u);
+                    //System.Diagnostics.Debug.WriteLine(u.Username + ">>" + u.PrivateAddress + ", " + u.PublicAddress);
+                    App.UserDb.SaveUser(u);
                     DisplayAlert("Login Succesful", "Proceed!", "OK");
                 }
             }
@@ -76,6 +78,8 @@ namespace Incohearent.Views
             Ova metoda će, nakon provjere WiFi-ja, stavljati igrača u prikladnu sobu/lobby.
             
             */
+
+            
         }       
     }
 }

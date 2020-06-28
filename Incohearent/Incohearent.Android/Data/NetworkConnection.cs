@@ -9,6 +9,7 @@ using Android.Net;
 using Android.Net.Wifi;
 using Android.OS;
 using Android.Runtime;
+using Android.Telecom;
 using Android.Text.Format;
 using Android.Views;
 using Android.Widget;
@@ -42,11 +43,11 @@ namespace Incohearent.Droid.Data
         public string GetIpAddressDevice()
         {
 
-            WifiManager wifiManager = (WifiManager)(Application.Context.GetSystemService(Context.WifiService));
+            WifiManager wifiMan = (WifiManager)(Application.Context.GetSystemService(Context.WifiService));
             WifiInfo wifiInfo;
             string ipDevice = "";
 
-            wifiInfo = wifiManager.ConnectionInfo;
+            wifiInfo = wifiMan.ConnectionInfo;
             if (wifiInfo.SupplicantState == SupplicantState.Completed)
             {
                 
@@ -54,6 +55,15 @@ namespace Incohearent.Droid.Data
             }
 
             return ipDevice;
+        }
+
+        public bool UserIsOnWifi()
+        {
+            bool userOnWifi = false;
+            ConnectivityManager connMan = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
+            NetworkInfo isWifi = connMan.GetNetworkInfo(ConnectivityType.Wifi);
+            if (isWifi.IsConnected) userOnWifi = true;
+            return userOnWifi;
         }
     }
 }

@@ -11,15 +11,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Incohearent.Data;
+using System.Reflection;
+using Incohearent.Droid.Data;
 
+[assembly: Xamarin.Forms.Dependency(typeof(SQLiteAndroid))] // potreban dependency
 namespace Incohearent.Droid.Data
-{
+{ 
     public class SQLiteAndroid : ISQlite
     {
         public SQLiteAndroid() { }
         public SQLite.SQLiteConnection GetConnection()
         {
-            var sqliteFilename = "IncohearentDB.db3";
+            var sqliteFilename = "IncohearentDB";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var path = Path.Combine(documentPath, sqliteFilename);
             var conn = new SQLite.SQLiteConnection(path);

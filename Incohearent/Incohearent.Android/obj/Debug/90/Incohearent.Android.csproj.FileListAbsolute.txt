@@ -483,3 +483,4 @@ C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Deb
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\flata\DBD707DB02D01CE3.flata
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\flata\CBC6BAFE55D06803.flata
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\flata\E35CD8D57F3C6787.flata
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\res\drawable\loginbanner.png

@@ -9,18 +9,15 @@
         <StackLayout x:Name="MasterLayout">
 
             <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
-                <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red" />
-                <Image x:Name="LoginIcon" Source="icon.png" Margin="0,0,0,0" />
-
+                <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Crimson" />
+                <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,10,0" />
             </StackLayout>
 
-            <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
-
+            <StackLayout x:Name="LoginEntriesStack" VerticalOptions="FillAndExpand">
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true"></ActivityIndicator>
-
-                <Label x:Name="LBLUser" Text="Username" />
-                <Entry x:Name="EnUser" Placeholder="Username" />
-                <Button x:Name="BTNSignIn" Text="Sign in" Clicked="SignIntoLobby"/>
+                <Label x:Name="LBLUser" Text="Pick a cool name: " />
+                <Entry x:Name="EnUser" Placeholder="Type it here..." />
+                <Button x:Name="BTNSignIn" Text="Let's Play!" Clicked="SignIntoLobby" BackgroundColor="SkyBlue" />
             </StackLayout>
         </StackLayout>
 
