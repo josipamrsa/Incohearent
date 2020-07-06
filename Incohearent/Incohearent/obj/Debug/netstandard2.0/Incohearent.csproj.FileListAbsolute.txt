@@ -11,8 +11,8 @@ C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netst
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.AssemblyInfo.cs
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\bin\Debug\netstandard2.0\ref\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\bin\Debug\netstandard2.0\Incohearent.pdb
-C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.csproj.CoreCompileInputs.cache
-C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\ref\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.pdb
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.csproj.CoreCompileInputs.cache
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\XamlC.stamp

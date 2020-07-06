@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>HUAWEI SNE-LX1</SelectedDevice>
     <DefaultDevice>XamarinTestApp</DefaultDevice>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

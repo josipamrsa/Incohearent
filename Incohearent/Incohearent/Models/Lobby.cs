@@ -9,14 +9,18 @@ namespace Incohearent.Models
     {
         [PrimaryKey]
         [AutoIncrement]
-        public string LobbyId { get; set; }
+        public int LobbyId { get; set; }
         public string GatewayIp { get; set; }
-        public string IspIp { get; set; }
-        public string UserId { get; set; }
+        public string UserIp { get; set; }
+        public int UserId { get; set; }
+        public bool IsActive { get; set; }
 
-        public Lobby()
+        public Lobby(string gip, string uip, int user, bool active)
         {
-
+            this.GatewayIp = gip;
+            this.UserIp = uip;
+            this.UserId = user;
+            this.IsActive = active;
         }
     }
 }

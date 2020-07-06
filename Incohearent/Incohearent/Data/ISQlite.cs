@@ -7,6 +7,6 @@ namespace Incohearent.Data
 {
     public interface ISQlite
     {
-        SQLiteConnection GetConnection();
+        SQLiteAsyncConnection GetConnection();
     }
 }

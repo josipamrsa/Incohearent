@@ -5,6 +5,7 @@ public class MonoPackageManager_Resources {
 		"Incohearent.Android.dll",
 		"FormsViewGroup.dll",
 		"Incohearent.dll",
+		"Microsoft.Data.Sqlite.dll",
 		"SQLite-net.dll",
 		"SQLitePCLRaw.batteries_v2.dll",
 		"SQLitePCLRaw.core.dll",

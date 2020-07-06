@@ -27,5 +27,9 @@ namespace Incohearent.Models
                                                 "If you want to play with your friends, make sure you're all " +
                                                 "connected to the same WiFi network!";
 
+        //----Login fail----//
+        public static string LoginFailedTitle = "Tell Us Your Name First";
+        public static string LoginFailedText = "We need to know your screen name first, before we let you in!";
+
     }
 }

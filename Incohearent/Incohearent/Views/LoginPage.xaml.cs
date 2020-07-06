@@ -1,5 +1,7 @@
-﻿using Incohearent.Data;
+﻿using Incohearent.Controllers;
+using Incohearent.Data;
 using Incohearent.Models;
+using Incohearent.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,37 @@ namespace Incohearent.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
-    {     
+    {
+        public LoginViewModel ViewModel
+        {
+            get { return BindingContext as LoginViewModel; }
+            set { BindingContext = value; }
+        }
         public LoginPage()
         {
-            InitializeComponent();
+            var userStore = new LoginController(DependencyService.Get<ISQlite>());
+            var pageStore = new PageService();
+            ViewModel = new LoginViewModel(userStore, pageStore);
+            InitializeComponent();            
             Init();
+
+            MessagingCenter.Subscribe<LoginViewModel, string>(this, "loginFail", (sender, user) => {
+                DisplayAlert(Constants.LoginFailedTitle, Constants.LoginFailedText, "Got it!");          
+            });
+
+            MessagingCenter.Subscribe<LoginViewModel, string>(this, "notOnWifi", (sender, info) => {
+                DisplayAlert(Constants.NotOnWifiTitle, Constants.NotOnWifiWarning, "Got it!");
+            });
+
+            MessagingCenter.Subscribe<LoginViewModel, User>(this, "loggedIn", (sender, users) =>
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    //App.LobbyDb.CreateNewLobby(u);
+                    Application.Current.MainPage = new NavigationPage(new LobbyPage());
+                   
+                }
+            });
         }
 
         private void Init()
@@ -29,57 +57,5 @@ namespace Incohearent.Views
             LoginIcon.HeightRequest = Constants.LoginIconHeight;
             App.StartCheckIfInternet(lbl_NoInternet, this);
         }
-
-        private void SignIntoLobby(object sender, EventArgs e)
-        {            
-            RegisterUser(EnUser.Text);
-            LobbyAssign();
-        }
-        private void RegisterUser(string username)
-        {
-            /*
-            
-            Aplikacija je zamišljena da se korisnici spajaju u određeni lobby na način da bi svi trebali biti
-            na istom WiFi-ju ako žele igrati skupa. Primjerice, u grupi od 4 ljudi, ako jedan nije spojen na WiFi
-            na koji su svi ostali spojeni, on će se pojaviti u drukčijem lobbyju nego ostali. Igra i jest zamišljena
-            tako da se igra u grupi, kao i originalna kartaška igra.
-            
-            */
-
-            var networkConnection = DependencyService.Get<INetworkConnection>();
-            string publicAddress = App.RestApi.GetPublicIpAddress();
-            string privateAddress = networkConnection.GetIpAddressDevice();
-
-            if (!networkConnection.UserIsOnWifi()) DisplayAlert(Constants.NotOnWifiTitle, Constants.NotOnWifiWarning, "Got it!");
-
-            try
-            {
-                if (!username.Equals(""))
-                {                   
-                    User u = new User(username, publicAddress, privateAddress);
-                    //System.Diagnostics.Debug.WriteLine(u.Username + ">>" + u.PrivateAddress + ", " + u.PublicAddress);
-                    App.UserDb.SaveUser(u);
-                    DisplayAlert("Login Succesful", "Proceed!", "OK");
-                }
-            }
-
-            catch (Exception ex)
-            {
-                DisplayAlert("Login Failed", "Please choose a name!", "OK");
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-            }        
-        }
-
-        private void LobbyAssign()
-        {
-            /*
-            
-            Ova metoda će, nakon provjere WiFi-ja, stavljati igrača u prikladnu sobu/lobby.
-            
-            */
-
-            
-        }       
     }
 }

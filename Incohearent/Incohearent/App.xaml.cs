@@ -25,8 +25,8 @@ namespace Incohearent
         static RestApiService restApi;
 
         // User Database
-
-        static UserDatabaseController udc;
+        static LoginController udc;
+        static LobbyController ldc;
 
         public static RestApiService RestApi
         {
@@ -36,14 +36,7 @@ namespace Incohearent
                 return restApi;
             }
         }
-        public static UserDatabaseController UserDb
-        {
-            get {
-                if (udc == null) { udc = new UserDatabaseController(); }
-                return udc;
-            }
-        }
-
+        
         public App()
         {
             InitializeComponent();

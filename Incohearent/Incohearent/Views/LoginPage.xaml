@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
              mc:Ignorable="d"
              x:Class="Incohearent.Views.LoginPage">
+    
+   
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">
 
@@ -16,8 +18,8 @@
             <StackLayout x:Name="LoginEntriesStack" VerticalOptions="FillAndExpand">
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true"></ActivityIndicator>
                 <Label x:Name="LBLUser" Text="Pick a cool name: " />
-                <Entry x:Name="EnUser" Placeholder="Type it here..." />
-                <Button x:Name="BTNSignIn" Text="Let's Play!" Clicked="SignIntoLobby" BackgroundColor="SkyBlue" />
+                <Entry x:Name="EnUser" Placeholder="Type it here..." Text="{Binding Path=User.Username}"/>
+                <Button x:Name="BTNSignIn" Text="Let's Play!" Command="{Binding SignInUserCommand}" BackgroundColor="SkyBlue" />
             </StackLayout>
         </StackLayout>
 

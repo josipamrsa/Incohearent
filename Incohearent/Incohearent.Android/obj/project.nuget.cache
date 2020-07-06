@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PZ9CRp1VIpJnN31sras4AVbLw+debuePf61IN0ArcJS27bsbZH6FogDuOo/II7BiIzpMY9F+Lwfcz29VYj91Xg==",
+  "dgSpecHash": "6POZc9JeOsAOHE3wQUXEfZlpPY9iXw9vDuQX2FQFPhz01pRU2faoaIhEFFSW+o05wKSlYtQZMzVqXxSJxmwUFQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PMF\\Desktop\\Projekt\\Incohearent\\Incohearent\\Incohearent.Android\\Incohearent.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PMF\\.nuget\\packages\\microsoft.data.sqlite.core\\3.1.5\\microsoft.data.sqlite.core.3.1.5.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\sqlite-net-pcl\\1.7.335\\sqlite-net-pcl.1.7.335.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.3\\sqlitepclraw.bundle_green.2.0.3.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jbOAag20Id+LF+ThpmeRtJDIYiAin6131y1lQc/7SbVk+7nuW4boAuT4ecnFujyGF4UGcR0cpZhGlhy7cK7dEw==",
+  "dgSpecHash": "UYCnQUnIQL+LOXAwA8zieuSnf8S1dendwl576oITAcBBQtwDvGb9tbqKbXrxdJOfe3UB9HnLp83fincJBGmaqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\PMF\\Desktop\\Projekt\\Incohearent\\Incohearent\\Incohearent\\Incohearent.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PMF\\.nuget\\packages\\microsoft.data.sqlite.core\\3.1.5\\microsoft.data.sqlite.core.3.1.5.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\sqlite-net-pcl\\1.7.335\\sqlite-net-pcl.1.7.335.nupkg.sha512",
