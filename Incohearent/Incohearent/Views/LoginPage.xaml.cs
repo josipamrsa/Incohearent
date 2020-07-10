@@ -38,13 +38,11 @@ namespace Incohearent.Views
                 DisplayAlert(Constants.NotOnWifiTitle, Constants.NotOnWifiWarning, "Got it!");
             });
 
-            MessagingCenter.Subscribe<LoginViewModel, User>(this, "loggedIn", (sender, users) =>
+            MessagingCenter.Subscribe<LoginViewModel, User>(this, "loggedIn", (sender, user) =>
             {
                 if (Device.RuntimePlatform == Device.Android)
-                {
-                    //App.LobbyDb.CreateNewLobby(u);
-                    Application.Current.MainPage = new NavigationPage(new LobbyPage());
-                   
+                {        
+                    Application.Current.MainPage = new NavigationPage(new LobbyPage(user));
                 }
             });
         }

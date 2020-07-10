@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Incohearent.Controllers
 {
-    public class PhraseDatabaseController
+    public class SessionController
     {
     }
 }

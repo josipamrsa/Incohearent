@@ -11,10 +11,11 @@ namespace Incohearent.Models
         [AutoIncrement]
         public int LobbyId { get; set; }
         public string GatewayIp { get; set; }
-        public string UserIp { get; set; }
+        public string UserIp { get; set; }        
         public int UserId { get; set; }
         public bool IsActive { get; set; }
 
+        public Lobby() { }
         public Lobby(string gip, string uip, int user, bool active)
         {
             this.GatewayIp = gip;

@@ -25,8 +25,9 @@ namespace Incohearent
         static RestApiService restApi;
 
         // User Database
-        static LoginController udc;
-        static LobbyController ldc;
+        //static LoginController udc;
+        //static LobbyController ldc;
+
 
         public static RestApiService RestApi
         {
@@ -40,7 +41,6 @@ namespace Incohearent
         public App()
         {
             InitializeComponent();
-
             MainPage = new LoginPage();
         }
 

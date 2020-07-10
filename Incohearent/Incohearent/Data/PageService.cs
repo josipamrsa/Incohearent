@@ -8,17 +8,6 @@ namespace Incohearent.Data
 {
     public class PageService : IPageService
     {
-        // Navigacija sa stranice na stranicu
-        public async Task PushAsync(Page page)
-        {
-            await MainPage.Navigation.PushAsync(page);
-        }
-
-        public async Task<Page> PopAsync()
-        {
-            return await MainPage.Navigation.PopAsync();
-        }
-       
         // Prikazat ce sve poruke koje pristizu
         public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
         {

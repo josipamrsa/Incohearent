@@ -7,9 +7,12 @@
              x:Class="Incohearent.Views.LobbyPage">
     <ContentPage.Content>
         <StackLayout>
+            <Button x:Name="BTNSignOut" Text="Sign Out" Command="{Binding DisconnectFromLobbyCommand}" BackgroundColor="HotPink" />
             <Label Text="Incohearent - Lobby"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="CenterAndExpand" x:Name="LBLPlayerConnections" />
+            <Button x:Name="BTNStartSession" Text="Let the game begin!" Command="{Binding StartSessionCommand}" BackgroundColor="SkyBlue" />
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

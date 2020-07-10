@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -6,12 +7,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
+
+
 namespace Incohearent.Data
 {
     public class RestApiService
     {
         private HttpClient client;
-        string grant_type = "password";
+        //string grant_type = "password";
+        
 
         public RestApiService()
         {

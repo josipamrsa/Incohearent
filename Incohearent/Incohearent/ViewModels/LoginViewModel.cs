@@ -1,5 +1,6 @@
 ﻿using Incohearent.Data;
 using Incohearent.Models;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace Incohearent.ViewModels
         private UserViewModel userVm;
         private IUserStore userStore;
         private IPageService pageService;
+        
         public User User { get; private set; }
        
         public UserViewModel UserVm
@@ -29,9 +31,9 @@ namespace Incohearent.ViewModels
         public ICommand SignInUserCommand { get; private set; }
 
         public LoginViewModel(IUserStore us, IPageService ps)
-        {
+        { 
             userStore = us;
-            pageService = ps;
+            pageService = ps;            
             SignInUserCommand = new Command(async () => await SignInUser());
             User = new User();
         }
@@ -39,6 +41,7 @@ namespace Incohearent.ViewModels
         private async Task SignInUser()
         {
             var networkConnection = DependencyService.Get<INetworkConnection>();
+
             if (String.IsNullOrWhiteSpace(User.Username))
             {
                 MessagingCenter.Send(this, "loginFail", "OK");
@@ -55,7 +58,7 @@ namespace Incohearent.ViewModels
             //else            
             //    await userStore.UpdateUser(User);            
 
-            if (!networkConnection.UserIsOnWifi()) MessagingCenter.Send(this, "notOnWifi", "OK");          
+            if (!networkConnection.UserIsOnWifi()) MessagingCenter.Send(this, "notOnWifi", "OK");
             MessagingCenter.Send(this, "loggedIn", User);
         }
 
