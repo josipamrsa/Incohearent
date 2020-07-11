@@ -39,21 +39,20 @@ namespace Incohearent.Views
                 LBLPlayerConnections.Text += info + "\n";
             });
 
-            MessagingCenter.Subscribe<LobbyAssignViewModel, string>(this, "userSignOut", (sender, info) => {
+            MessagingCenter.Subscribe<LobbyAssignViewModel, string>(this, "exitApp", (sender, info) => {
                 if (Device.RuntimePlatform == Device.Android)
-                {                    
-                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                {
+                    // TODO - dokuciti misterij duplih poruka, ovo je zasad "rjesenje"
+                    Environment.Exit(0); 
                 }
             });
         }
 
         protected override void OnAppearing()
         {
-            LBLPlayerConnections.Text = "";
-            ViewModel.ConnectToLobbyCommand.Execute(LoggedUser);          
             base.OnAppearing();
-        }
-
-
+            LBLPlayerConnections.Text = "";
+            ViewModel.ConnectToLobbyCommand.Execute(null);                    
+        }       
     }
 }

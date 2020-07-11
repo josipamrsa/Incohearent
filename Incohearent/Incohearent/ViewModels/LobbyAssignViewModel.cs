@@ -59,8 +59,8 @@ namespace Incohearent.ViewModels
 
             hubConn.On<User>("LeaveLobby", (loggedUser) =>
             {               
-                MessagingCenter.Send(this, "leftLobby", $"User {loggedUser.Username} has left the lobby.");
-            });
+                MessagingCenter.Send(this, "leftLobby", $"User {loggedUser.Username} has left the lobby."); 
+            });           
         }
         
         private async Task ConnectToLobby(User user)
@@ -70,10 +70,10 @@ namespace Incohearent.ViewModels
         }
 
         private async Task DisconnectFromLobby(User user)
-        {
+        {           
             await hubConn.InvokeAsync("LeaveLobby", user);
             await hubConn.StopAsync();
-            MessagingCenter.Send(this, "userSignOut", "OK");
+            MessagingCenter.Send(this, "exitApp", "OK");
         }
 
         private async Task SaveLobby(Lobby lobby)
