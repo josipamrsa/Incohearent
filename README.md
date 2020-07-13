@@ -10,4 +10,5 @@ Server: https://github.com/josipamrsa/IncohearentServer
 >> 28.6.2020. - SQLite database connection successful, Login now checks if user is connected to a WiFi network  
 >> 6.7.2020. - Login rewritten into MVVM model, currently adds user, next up is lobby creation/assignment  
 >> 10.7.2020. - Web server, lobby built with SignalR - basic functions of joining/leaving lobby, sign out  
->> 11.7.2020. - Lobby/application exit/enter, tests
+>> 11.7.2020. - Lobby/application exit/enter, tests  
+>> 13.7.2020. - Phrase generator (server)
