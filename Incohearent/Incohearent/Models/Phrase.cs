@@ -11,12 +11,12 @@ namespace Incohearent.Models
         [AutoIncrement]
         public int PhraseId { get; set; }
         public string PhraseGenerated { get; set; }
-        public List<string> PhraseDissect { get; set; }
-        public List<string> PhrasePhonetic { get; set; }
+        public string PhrasePhonetic { get; set; }
 
-        public Phrase()
+        public Phrase(string gen, string phonetic)
         {
-
+            PhraseGenerated = gen;
+            PhrasePhonetic = phonetic;
         }
     }
 }
