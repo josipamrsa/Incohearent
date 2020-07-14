@@ -2,6 +2,7 @@
 using Incohearent.Data;
 using Incohearent.Models;
 using Incohearent.ViewModels;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,14 @@ namespace Incohearent.Views
                 {
                     // TODO - dokuciti misterij duplih poruka, ovo je zasad "rjesenje"
                     Environment.Exit(0); 
+                }
+            });
+
+            MessagingCenter.Subscribe<LobbyAssignViewModel, string>(this, "sessionStart", (sender, id) =>
+            {               
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new SessionPage(id));
                 }
             });
         }

@@ -33,9 +33,11 @@ namespace Incohearent.ViewModels
         }
 
         private HubConnection hubConn;
+
         public ICommand ConnectToLobbyCommand { get; private set; }
         public ICommand DisconnectFromLobbyCommand { get; private set; }
         public ICommand SaveLobbyCommand { get; private set; }
+        public ICommand StartSessionCommand { get; private set; }
 
         public LobbyAssignViewModel(User user, ILobbyStore ls, IPageService ps)
         {
@@ -48,6 +50,7 @@ namespace Incohearent.ViewModels
             ConnectToLobbyCommand = new Command(async () => await ConnectToLobby(user));
             DisconnectFromLobbyCommand = new Command(async () => await DisconnectFromLobby(user));
             SaveLobbyCommand = new Command(async () => await SaveLobby(Lobby));
+            StartSessionCommand = new Command(async () => await StartSession(User));
 
             Lobby = new Lobby();
             
@@ -60,9 +63,19 @@ namespace Incohearent.ViewModels
             hubConn.On<User>("LeaveLobby", (loggedUser) =>
             {               
                 MessagingCenter.Send(this, "leftLobby", $"User {loggedUser.Username} has left the lobby."); 
-            });           
+            });
+
+            hubConn.On<User>("StartGame", (gameMaster) =>
+            {
+                MessagingCenter.Send(this, "sessionStart", hubConn.ConnectionId.ToString());                
+            });
         }
-        
+
+        private async Task StartSession(User user)
+        {
+            await hubConn.InvokeAsync("StartGame", user);          
+        }
+
         private async Task ConnectToLobby(User user)
         {                     
             await hubConn.StartAsync();
@@ -81,6 +94,5 @@ namespace Incohearent.ViewModels
             Lobby = lobby;
             await lobbyStore.AddLobby(Lobby);         
         }
-
     }
 }

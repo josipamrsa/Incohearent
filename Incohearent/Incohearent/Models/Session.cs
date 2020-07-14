@@ -10,14 +10,17 @@ namespace Incohearent.Models
         [PrimaryKey]
         [AutoIncrement]
         public int SessionId { get; set; }
-        public string GameType { get; set; }
+        //public string GameType { get; set; }
         public int UserId { get; set; }
         public int RoundNum { get; set; }
         public int PlayerNum { get; set; }
 
-        public Session()
+        public Session() { }
+        public Session(int id, int rn, int pn)
         {
-               
+            UserId = id;
+            RoundNum = rn;
+            PlayerNum = pn;
         }
     }
 }
