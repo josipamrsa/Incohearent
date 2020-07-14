@@ -5,7 +5,7 @@ Server: https://github.com/josipamrsa/IncohearentServer
 From the Amazon page: "Incohearent is the adult party game that will get you talking! Let the laughs begin as you compete to make sense out of gibberish from one of three categories — kinky, party and pop culture."
 This is a C#/Xamarin project which is a mobile game app inspired by the card game. 
 
-Technologies
+## Technologies
 * DB
   * SQLite
 * Backend
