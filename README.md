@@ -27,4 +27,5 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
 >> 10.7.2020. - Web server, lobby built with SignalR - basic functions of joining/leaving lobby, sign out  
 >> 11.7.2020. - Lobby/application exit/enter, tests  
 >> 13.7.2020. - Phrase generator (server)  
->> 14.7.2020. - Session screen started
+>> 14.7.2020. - Session screen started  
+>> 17.7.2020. - Phrase display on session screen
