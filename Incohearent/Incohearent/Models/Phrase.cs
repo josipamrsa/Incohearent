@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Incohearent.Models
 {
-    public class Phrase
+    public class PhoneticPhrases
     {
         [PrimaryKey]
         [AutoIncrement]
@@ -13,7 +13,8 @@ namespace Incohearent.Models
         public string PhraseGenerated { get; set; }
         public string PhrasePhonetic { get; set; }
 
-        public Phrase(string gen, string phonetic)
+        public PhoneticPhrases() { }
+        public PhoneticPhrases(string gen, string phonetic)
         {
             PhraseGenerated = gen;
             PhrasePhonetic = phonetic;

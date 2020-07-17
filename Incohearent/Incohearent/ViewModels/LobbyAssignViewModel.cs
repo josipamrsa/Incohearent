@@ -65,15 +65,17 @@ namespace Incohearent.ViewModels
                 MessagingCenter.Send(this, "leftLobby", $"User {loggedUser.Username} has left the lobby."); 
             });
 
-            hubConn.On<User>("StartGame", (gameMaster) =>
+            hubConn.On<User>("StartGame", async (gameMaster) =>
             {
-                MessagingCenter.Send(this, "sessionStart", hubConn.ConnectionId.ToString());                
+                MessagingCenter.Send(this, "sessionStart", hubConn.ConnectionId.ToString());
+                await hubConn.StopAsync();
             });
         }
-
+      
         private async Task StartSession(User user)
         {
-            await hubConn.InvokeAsync("StartGame", user);          
+            await hubConn.InvokeAsync("StartGame", user);
+            await hubConn.StopAsync();
         }
 
         private async Task ConnectToLobby(User user)

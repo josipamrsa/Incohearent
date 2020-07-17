@@ -52,7 +52,7 @@ namespace Incohearent.Views
             {               
                 if (Device.RuntimePlatform == Device.Android)
                 {
-                    Application.Current.MainPage = new NavigationPage(new SessionPage(id));
+                    Application.Current.MainPage = new NavigationPage(new SessionPage(user));
                 }
             });
         }

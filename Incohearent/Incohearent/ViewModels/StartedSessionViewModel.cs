@@ -1,6 +1,6 @@
 ﻿using Incohearent.Data;
 using Incohearent.Models;
-using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +18,7 @@ namespace Incohearent.ViewModels
 
         public User User { get; private set; }
         public Session Session { get; private set; }
-        public string UserConnectionId { get; private set; }
+        public PhoneticPhrases Phrase { get; private set; }
 
         public SessionViewModel SessionVm
         {
@@ -31,22 +31,44 @@ namespace Incohearent.ViewModels
 
         private HubConnection hubConn;
         public ICommand FetchPhrasesCommand { get; private set; }
+        public ICommand ConnectSessionCommand { get; private set; }
 
 
-        public StartedSessionViewModel(string id, ISessionStore ss, IPageService ps)
+        public StartedSessionViewModel(User user, ISessionStore ss, IPageService ps)
         {
-            UserConnectionId = id;
             sessionStore = ss;
             pageService = ps;
+            User = user;
+            Phrase = new PhoneticPhrases();
 
-            FetchPhrasesCommand = new Command(async () => await FetchPhrases());
+            hubConn = new HubConnectionBuilder().WithUrl("https://incohearentwebserver.azurewebsites.net/gameHub").Build();
+
+            ConnectSessionCommand = new Command(async () => await ConnectToSession(User));         
+            FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, Phrase));
+
             Session = new Session();
 
+            hubConn.On<PhoneticPhrases>("PhrasesGenerated", (phrase) =>
+            {
+                MessagingCenter.Send(this, "phraseGenerated", phrase);
+            });
+
+            hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
+            {
+                MessagingCenter.Send(this, "phraseNotGenerated", phrase);
+            });
         }
 
-        private async Task FetchPhrases()
+        private async Task ConnectToSession(User user)
         {
-            
+            await hubConn.StartAsync();
+            await hubConn.InvokeAsync("ConnectSession", user);
+            MessagingCenter.Send(this, "userSession", "session");
+        }
+
+        private async Task FetchPhrases(User user, PhoneticPhrases phrase)
+        {
+            await hubConn.InvokeAsync("GeneratePhrases", user, phrase);            
         }
     }
 }
