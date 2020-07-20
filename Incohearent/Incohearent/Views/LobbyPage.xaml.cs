@@ -48,11 +48,11 @@ namespace Incohearent.Views
                 }
             });
 
-            MessagingCenter.Subscribe<LobbyAssignViewModel, string>(this, "sessionStart", (sender, id) =>
+            MessagingCenter.Subscribe<LobbyAssignViewModel, User>(this, "sessionStart", (sender, gameMaster) =>
             {               
                 if (Device.RuntimePlatform == Device.Android)
                 {
-                    Application.Current.MainPage = new NavigationPage(new SessionPage(user));
+                    Application.Current.MainPage = new NavigationPage(new SessionPage(LoggedUser, gameMaster));
                 }
             });
         }

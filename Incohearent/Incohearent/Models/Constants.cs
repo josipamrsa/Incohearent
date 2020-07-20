@@ -7,7 +7,7 @@ namespace Incohearent.Models
 {
     public class Constants
     {
-        public static bool IsDev = true; // Za debug/dev svrhu
+        public static bool IsDev = true; // debug
 
         //----Color scheme----//
         public static Color BackgroundColor = Color.White;
@@ -31,5 +31,11 @@ namespace Incohearent.Models
         public static string LoginFailedTitle = "Tell Us Your Name First";
         public static string LoginFailedText = "We need to know your screen name first, before we let you in!";
 
+        //----Web server configuration----//
+        public static string LocalWebServer = "http://localhost:44733/gameHub";
+        public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
+        public static string NgrokServer = "https://5bfe274a1d02.ngrok.io/gameHub"; // testni server
+
+        public static string ServerConfiguration = NgrokServer;
     }
 }

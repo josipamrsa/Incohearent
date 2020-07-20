@@ -45,7 +45,7 @@ namespace Incohearent.ViewModels
             pageService = ps;
             User = user;
            
-            hubConn = new HubConnectionBuilder().WithUrl("https://incohearentwebserver.azurewebsites.net/gameHub").Build();
+            hubConn = new HubConnectionBuilder().WithUrl(Constants.ServerConfiguration).Build();
 
             ConnectToLobbyCommand = new Command(async () => await ConnectToLobby(user));
             DisconnectFromLobbyCommand = new Command(async () => await DisconnectFromLobby(user));
@@ -67,7 +67,7 @@ namespace Incohearent.ViewModels
 
             hubConn.On<User>("StartGame", async (gameMaster) =>
             {
-                MessagingCenter.Send(this, "sessionStart", hubConn.ConnectionId.ToString());
+                MessagingCenter.Send(this, "sessionStart", gameMaster);
                 await hubConn.StopAsync();
             });
         }

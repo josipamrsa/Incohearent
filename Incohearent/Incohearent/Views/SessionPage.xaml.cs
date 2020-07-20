@@ -22,20 +22,23 @@ namespace Incohearent.Views
             get { return BindingContext as StartedSessionViewModel; }
             set { BindingContext = value; }
         }
-        
-        public User User { get; set; }
 
-        public SessionPage(User user)
+        public User User { get; set; }
+        public User GameMaster {get;set;}
+
+        public SessionPage(User user, User gameMaster)
         {
             InitializeComponent();
             var sessionStore = new SessionController(DependencyService.Get<ISQlite>());
             var pageStore = new PageService();
-            
+
             User = user;
+            GameMaster = gameMaster;
 
-            ViewModel = new StartedSessionViewModel(User, sessionStore, pageStore);
+            ViewModel = new StartedSessionViewModel(User, GameMaster, sessionStore, pageStore);
 
-            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "userSession", (sender, state) => {
+            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "userSession", (sender, state) =>
+            {
                 ViewModel.FetchPhrasesCommand.Execute(null);
             });
 
@@ -44,12 +47,16 @@ namespace Incohearent.Views
                 ViewModel.FetchPhrasesCommand.Execute(null);
             });
 
-            MessagingCenter.Subscribe<StartedSessionViewModel, PhoneticPhrases>(this, "phraseGenerated", (sender, phrase) =>
+            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "originalPhraseFetch", (sender, phrase) =>
             {
-                //LBLPhrases.Text = phrase.PhraseGenerated + ">>" + phrase.PhrasePhonetic;
+                LBLPhrases.Text = phrase;
+            });
 
-                // Prikaz frazi - logika
-            });           
+            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "phraseGenerated", (sender, phrase) =>
+            {
+                LBLPhrases.Text = phrase;
+            });
+
         }
 
         protected override void OnAppearing()

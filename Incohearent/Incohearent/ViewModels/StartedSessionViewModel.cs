@@ -17,6 +17,7 @@ namespace Incohearent.ViewModels
         private IPageService pageService;
 
         public User User { get; private set; }
+        public User GameMaster { get; private set; }
         public Session Session { get; private set; }
         public PhoneticPhrases Phrase { get; private set; }
 
@@ -34,29 +35,37 @@ namespace Incohearent.ViewModels
         public ICommand ConnectSessionCommand { get; private set; }
 
 
-        public StartedSessionViewModel(User user, ISessionStore ss, IPageService ps)
+        public StartedSessionViewModel(User user, User gm, ISessionStore ss, IPageService ps)
         {
             sessionStore = ss;
             pageService = ps;
+
             User = user;
+            GameMaster = gm;
             Phrase = new PhoneticPhrases();
 
-            hubConn = new HubConnectionBuilder().WithUrl("https://incohearentwebserver.azurewebsites.net/gameHub").Build();
+            hubConn = new HubConnectionBuilder().WithUrl(Constants.ServerConfiguration).Build();
 
             ConnectSessionCommand = new Command(async () => await ConnectToSession(User));         
-            FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, Phrase));
+            FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, GameMaster, Phrase));
 
             Session = new Session();
 
-            hubConn.On<PhoneticPhrases>("PhrasesGenerated", (phrase) =>
+            hubConn.On<string>("PhrasesGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseGenerated", phrase);
             });
 
+            hubConn.On<string>("OriginalPhraseFetched", (phrase) =>
+            {
+                MessagingCenter.Send(this, "originalPhraseFetch", phrase);
+            });
+
+
             hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseNotGenerated", phrase);
-            });
+            });            
         }
 
         private async Task ConnectToSession(User user)
@@ -66,9 +75,9 @@ namespace Incohearent.ViewModels
             MessagingCenter.Send(this, "userSession", "session");
         }
 
-        private async Task FetchPhrases(User user, PhoneticPhrases phrase)
+        private async Task FetchPhrases(User user, User gm, PhoneticPhrases phrase)
         {
-            await hubConn.InvokeAsync("GeneratePhrases", user, phrase);            
+            await hubConn.InvokeAsync("GeneratePhrases", user, gm, phrase);                        
         }
     }
 }

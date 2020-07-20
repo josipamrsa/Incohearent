@@ -10,7 +10,8 @@
         <StackLayout>
             <Label Text="Game time!" x:Name="LBLPhrases"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+            <Button x:Name="BTNTurnInGuess" Text="Let's Play!" Command="" BackgroundColor="Crimson" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
