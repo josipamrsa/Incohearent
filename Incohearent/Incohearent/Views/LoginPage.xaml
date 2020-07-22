@@ -6,13 +6,11 @@
              mc:Ignorable="d"
              x:Class="Incohearent.Views.LoginPage">
     
-   
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">
-
             <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
                 <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Crimson" />
-                <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,10,0" />
+                <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,0,40" />
             </StackLayout>
 
             <StackLayout x:Name="LoginEntriesStack" VerticalOptions="FillAndExpand">
@@ -22,6 +20,6 @@
                 <Button x:Name="BTNSignIn" Text="Let's Play!" Command="{Binding SignInUserCommand}" BackgroundColor="SkyBlue" />
             </StackLayout>
         </StackLayout>
-
     </ContentPage.Content>
+    
 </ContentPage>

@@ -9,6 +9,7 @@ namespace Incohearent.Data
         bool IsConnected { get; }
         void CheckNetworkConnection();
         string GetIpAddressDevice();
+        string GetIPAddressCellularNetwork();
         bool UserIsOnWifi();
     }
 }

@@ -3,6 +3,7 @@ using Incohearent.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,12 +15,13 @@ namespace Incohearent.ViewModels
     {
         private SessionViewModel sessionVm;
         private ISessionStore sessionStore;
-        private IPageService pageService;
+        private IPageService pageService;      
 
         public User User { get; private set; }
         public User GameMaster { get; private set; }
         public Session Session { get; private set; }
         public PhoneticPhrases Phrase { get; private set; }
+        public List<User> PlayersInSession { get; private set; }
 
         public SessionViewModel SessionVm
         {
@@ -33,7 +35,8 @@ namespace Incohearent.ViewModels
         private HubConnection hubConn;
         public ICommand FetchPhrasesCommand { get; private set; }
         public ICommand ConnectSessionCommand { get; private set; }
-
+        public ICommand ListPlayersCommand { get; private set; }
+        public ICommand SendWinnerCommand { get; private set; }
 
         public StartedSessionViewModel(User user, User gm, ISessionStore ss, IPageService ps)
         {
@@ -43,11 +46,13 @@ namespace Incohearent.ViewModels
             User = user;
             GameMaster = gm;
             Phrase = new PhoneticPhrases();
+            PlayersInSession = new List<User>();
 
             hubConn = new HubConnectionBuilder().WithUrl(Constants.ServerConfiguration).Build();
 
             ConnectSessionCommand = new Command(async () => await ConnectToSession(User));         
-            FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, GameMaster, Phrase));
+            FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, GameMaster, Phrase));           
+            SendWinnerCommand = new Command(async () => await SendInWinner());
 
             Session = new Session();
 
@@ -59,13 +64,23 @@ namespace Incohearent.ViewModels
             hubConn.On<string>("OriginalPhraseFetched", (phrase) =>
             {
                 MessagingCenter.Send(this, "originalPhraseFetch", phrase);
+                MessagingCenter.Send(this, "listAllPlayers", PlayersInSession);
             });
-
 
             hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseNotGenerated", phrase);
-            });            
+            });
+
+            hubConn.On<User>("ConnectSession", (logged) =>
+            {              
+                PlayersInSession.Add(logged);
+            });
+        }
+
+        private async Task SendInWinner()
+        {
+             
         }
 
         private async Task ConnectToSession(User user)

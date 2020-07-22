@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using Android.App;
@@ -42,7 +43,6 @@ namespace Incohearent.Droid.Data
         
         public string GetIpAddressDevice()
         {
-
             WifiManager wifiMan = (WifiManager)(Application.Context.GetSystemService(Context.WifiService));
             WifiInfo wifiInfo;
             string ipDevice = "";
@@ -55,6 +55,13 @@ namespace Incohearent.Droid.Data
             }
 
             return ipDevice;
+        }
+
+        public string GetIPAddressCellularNetwork()
+        {
+            IPAddress[] adresses = Dns.GetHostAddresses(Dns.GetHostName());
+            if (adresses != null && adresses[0] != null) { return adresses[0].ToString(); }
+            else { return null; }
         }
 
         public bool UserIsOnWifi()

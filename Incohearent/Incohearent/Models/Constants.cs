@@ -12,6 +12,17 @@ namespace Incohearent.Models
         //----Color scheme----//
         public static Color BackgroundColor = Color.White;
         public static Color MainTextColor = Color.Black;
+        public static Color PlayerTextColor = Color.White;
+
+        public static Color[] PlayerColors = {
+            Color.DarkOrchid,
+            Color.DarkGoldenrod,
+            Color.DarkCyan,
+            Color.Tomato,
+            Color.LightSlateGray,
+            Color.MediumVioletRed,
+            Color.MidnightBlue
+        };
 
         //----Login banner--//
         public static int LoginIconHeight = 180;
@@ -30,11 +41,16 @@ namespace Incohearent.Models
         //----Login fail----//
         public static string LoginFailedTitle = "Tell Us Your Name First";
         public static string LoginFailedText = "We need to know your screen name first, before we let you in!";
+        
+
+        //----Session warning----//
+        public static string OnePlayerOnlyDetectedTitle = "Introvert Much?";
+        public static string OnePlayerOnlyDetectedText = "Better grab some friends to play with! This is a party game! :)";
 
         //----Web server configuration----//
         public static string LocalWebServer = "http://localhost:44733/gameHub";
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
-        public static string NgrokServer = "https://5bfe274a1d02.ngrok.io/gameHub"; // testni server
+        public static string NgrokServer = "https://920c576aa91a.ngrok.io/gameHub"; // testni server
 
         public static string ServerConfiguration = NgrokServer;
     }

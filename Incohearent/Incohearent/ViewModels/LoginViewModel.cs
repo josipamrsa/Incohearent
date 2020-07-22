@@ -49,7 +49,17 @@ namespace Incohearent.ViewModels
             }
 
             User.PublicAddress = App.RestApi.GetPublicIpAddress();
-            User.PrivateAddress = networkConnection.GetIpAddressDevice();
+
+            if (!string.IsNullOrEmpty(networkConnection.GetIpAddressDevice()))
+                User.PrivateAddress = networkConnection.GetIpAddressDevice();
+            else if (!string.IsNullOrEmpty(networkConnection.GetIPAddressCellularNetwork()))
+                User.PrivateAddress = networkConnection.GetIPAddressCellularNetwork();
+            else
+            {
+                MessagingCenter.Send(this, "ipNotFound", "OK");
+                return;
+            }
+
             User.LoggedIn = true;
 
             if (User.UserId == 0)
