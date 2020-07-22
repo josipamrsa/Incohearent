@@ -29,4 +29,5 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
 >> 13.7.2020. - Phrase generator (server)  
 >> 14.7.2020. - Session screen started  
 >> 17.7.2020. - Phrase display on session screen  
->> 20.7.2020. - Phrase display for GameMaster and other players, UI changes
+>> 20.7.2020. - Phrase display for GameMaster and other players, UI changes  
+>> 22.7.2020. - Dynamically created elements for each player - game master
