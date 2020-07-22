@@ -2,7 +2,7 @@
 Incohearent - Xamarin/C# Application  
 Server: https://github.com/josipamrsa/IncohearentServer
 
-From the Amazon page: "Incohearent is the adult party game that will get you talking! Let the laughs begin as you compete to make sense out of gibberish from one of three categories — kinky, party and pop culture."
+From the Amazon page: "Incohearent is the adult party game that will get you talking! Let the laughs begin as you compete to make sense out of gibberish from one of three categories — kinky, party and pop culture."  
 This is a C#/Xamarin project which is a mobile game app inspired by the card game. 
 
 ## Technologies
@@ -28,4 +28,5 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
 >> 11.7.2020. - Lobby/application exit/enter, tests  
 >> 13.7.2020. - Phrase generator (server)  
 >> 14.7.2020. - Session screen started  
->> 17.7.2020. - Phrase display on session screen
+>> 17.7.2020. - Phrase display on session screen  
+>> 20.7.2020. - Phrase display for GameMaster and other players, UI changes
