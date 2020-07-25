@@ -35,8 +35,32 @@ namespace Incohearent.Views
 
             User = user;
             GameMaster = gameMaster;
-
+           
             ViewModel = new StartedSessionViewModel(User, GameMaster, sessionStore, pageStore);
+            
+            MessagingCenter.Subscribe<StartedSessionViewModel, List<User>>(this, "listAllPlayers", (sender, list) =>
+            {
+                Color[] ColorScheme = Constants.PlayerColors;
+                Random rnd = new Random();
+
+                List<User> otherPlayers = list;
+                otherPlayers.RemoveAll(x => x.PrivateAddress == gameMaster.PrivateAddress);
+
+                foreach (User player in list)
+                    AddPlayerButtons(player.Username, ColorScheme[rnd.Next(0, ColorScheme.Length)], player);
+
+                AddPlayerButtons(Constants.NoOneWins, Constants.PlayerColors.First(), null);
+            });
+
+            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "notifyWinner", (sender, player) =>
+            {
+                //DisplayAlert("Winner", "Test", "OK");              
+            });         
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.ConnectSessionCommand.Execute(null);
 
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "userSession", (sender, state) =>
             {
@@ -47,23 +71,10 @@ namespace Incohearent.Views
             {
                 ViewModel.FetchPhrasesCommand.Execute(null);
             });
-           
+
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "phraseGenerated", (sender, phrase) =>
             {
                 LBLPhrases.Text = phrase;
-            });
-
-            MessagingCenter.Subscribe<StartedSessionViewModel, List<User>>(this, "listAllPlayers", (sender, list) =>
-            {
-                Color[] ColorScheme = Constants.PlayerColors;
-                Random rnd = new Random();
-
-                // TESTIRATI
-                //List<User> otherPlayers = list;
-                //otherPlayers.RemoveAll(x => x.PrivateAddress == gameMaster.PrivateAddress);
-
-                foreach (User player in list)
-                    PlayerButtons(player.Username, ColorScheme[rnd.Next(0, ColorScheme.Length)]);                                
             });
 
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "originalPhraseFetch", (sender, phrase) =>
@@ -71,22 +82,33 @@ namespace Incohearent.Views
                 LBLPhrases.Text = phrase;
             });
 
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.ConnectSessionCommand.Execute(null);            
+            TimerClock.HeightRequest = Constants.IconHeight;
+            TimerClock.Source = Constants.HourGlassImageSrc;        
+            StartTimer(TimerClock);
         }
 
-        public void PlayerButtons(string name, Color color)
+        public void AddPlayerButtons(string name, Color color, User player)
         {
             Button playerButton = new Button { Text = name };
+            
             playerButton.SetBinding(Button.CommandProperty, new Binding("SendWinnerCommand"));
+            playerButton.CommandParameter = player;           
+
             playerButton.BindingContext = ViewModel;
             playerButton.BackgroundColor = color;
             playerButton.TextColor = Constants.PlayerTextColor;
+
             parentLayout = sessionStack;
             parentLayout.Children.Add(playerButton);
+        }
+
+        public void StartTimer(Image timeClock)
+        {           
+            Device.StartTimer(TimeSpan.FromSeconds(60), () =>
+            {
+                timeClock.Source = Constants.AlarmImageSrc;
+                return false; // True = Repeat again, False = Stop the timer
+            });
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Incohearent.Models
@@ -15,6 +17,18 @@ namespace Incohearent.Models
         public Endcard()
         {
             
+        }
+    }
+
+    public class Points : User
+    {
+        public int PointsWon { get; set; }
+        public Points() { }
+        public Points(int points, string userAddr, string username)
+        {
+            PointsWon = points;
+            this.PrivateAddress = userAddr;
+            this.Username = username;
         }
     }
 }

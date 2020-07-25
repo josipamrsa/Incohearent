@@ -25,8 +25,17 @@ namespace Incohearent.Models
             this.PrivateAddress = privAddr;
             this.PublicAddress = publAddr;
             this.LoggedIn = log;
-        }
+        }     
+    }
 
-        
+    public class ConnectedUsers
+    {
+        public User ConnectedUser { get; set; }
+        public string ConnectionId { get; set; }
+        public ConnectedUsers() { }
+        public ConnectedUsers(User user, string id) {
+            ConnectedUser = user;
+            ConnectionId = id;    
+        }
     }
 }

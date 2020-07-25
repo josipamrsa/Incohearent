@@ -511,3 +511,5 @@ C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Deb
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\android\assets\System.Text.Json.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\android\assets\System.Threading.Channels.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\android\assets\System.Threading.Tasks.Extensions.dll
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\res\drawable\hourglass.gif
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent.Android\obj\Debug\90\res\drawable\alarm.gif
