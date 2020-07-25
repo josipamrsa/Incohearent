@@ -6,7 +6,7 @@ From the Amazon page: "Incohearent is the adult party game that will get you tal
 This is a C#/Xamarin project which is a mobile game app inspired by the card game. 
 
 ## Technologies
-* DB
+* DB/Storage
   * SQLite
 * Backend
   * Azure
