@@ -55,12 +55,7 @@ namespace Incohearent.Views
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "notifyWinner", (sender, player) =>
             {
                 //DisplayAlert("Winner", "Test", "OK");              
-            });         
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.ConnectSessionCommand.Execute(null);
+            });
 
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "userSession", (sender, state) =>
             {
@@ -74,17 +69,24 @@ namespace Incohearent.Views
 
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "phraseGenerated", (sender, phrase) =>
             {
+                TimerClock.HeightRequest = Constants.IconHeight;
+                TimerClock.Source = Constants.HourGlassImageSrc;
+                StartTimer(TimerClock);
                 LBLPhrases.Text = phrase;
             });
 
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "originalPhraseFetch", (sender, phrase) =>
             {
+                TimerClock.HeightRequest = Constants.IconHeight;
+                TimerClock.Source = Constants.HourGlassImageSrc;
+                StartTimer(TimerClock);
                 LBLPhrases.Text = phrase;
-            });
-
-            TimerClock.HeightRequest = Constants.IconHeight;
-            TimerClock.Source = Constants.HourGlassImageSrc;        
-            StartTimer(TimerClock);
+            });          
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.ConnectSessionCommand.Execute(null);                             
         }
 
         public void AddPlayerButtons(string name, Color color, User player)
