@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,6 +25,8 @@ namespace Incohearent.Views
 
         public User User { get; set; }
         public User GameMaster { get; set; }
+        public SessionTimer SessionTimer { get; private set; }
+
         StackLayout parentLayout;
 
         public SessionPage(User user, User gameMaster)
@@ -38,6 +40,7 @@ namespace Incohearent.Views
            
             ViewModel = new StartedSessionViewModel(User, GameMaster, sessionStore, pageStore);
             
+            // Izlistaj igrače
             MessagingCenter.Subscribe<StartedSessionViewModel, List<User>>(this, "listAllPlayers", (sender, list) =>
             {
                 Color[] ColorScheme = Constants.PlayerColors;
@@ -46,51 +49,61 @@ namespace Incohearent.Views
                 List<User> otherPlayers = list;
                 otherPlayers.RemoveAll(x => x.PrivateAddress == gameMaster.PrivateAddress);
 
+                if (parentLayout != null) buttonStack.Children.Clear();
+
                 foreach (User player in list)
                     AddPlayerButtons(player.Username, ColorScheme[rnd.Next(0, ColorScheme.Length)], player);
 
-                AddPlayerButtons(Constants.NoOneWins, Constants.PlayerColors.First(), null);
+                //AddPlayerButtons("No one", ColorScheme[rnd.Next(0, ColorScheme.Length)], null);
             });
 
-            MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "notifyWinner", (sender, player) =>
+            // Pokreni timer
+            MessagingCenter.Subscribe<StartedSessionViewModel, int>(this, "setupTimer", (sender, code) =>
             {
-                //DisplayAlert("Winner", "Test", "OK");              
+                SetupTimer(TimerClock, User, GameMaster);
             });
 
+            // Obavijesti o pobjedniku
+            MessagingCenter.Subscribe<StartedSessionViewModel, User>(this, "wonNotification", (sender, player) =>
+            {
+                DisplayAlert(Constants.DeclareWinnerTitle, Constants.DeclareWinnerInfo + player.Username, "Great!");
+                if (User.PrivateAddress == GameMaster.PrivateAddress)
+                    ViewModel.FetchPhrasesCommand.Execute(null);
+            });
+
+            // Uključi igrače u sesiju
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "userSession", (sender, state) =>
             {
-                ViewModel.FetchPhrasesCommand.Execute(null);
+                if (User.PrivateAddress == GameMaster.PrivateAddress)
+                    ViewModel.FetchPhrasesCommand.Execute(null);                
             });
 
+            // Ako nema optimalne fraze, šalji zahtjev ponovno
             MessagingCenter.Subscribe<StartedSessionViewModel, PhoneticPhrases>(this, "phraseNotGenerated", (sender, phrase) =>
             {
                 ViewModel.FetchPhrasesCommand.Execute(null);
             });
 
+            // Igračima podijeli randomizirani fonetski oblik fraze
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "phraseGenerated", (sender, phrase) =>
-            {
-                TimerClock.HeightRequest = Constants.IconHeight;
-                TimerClock.Source = Constants.HourGlassImageSrc;
-                StartTimer(TimerClock);
+            {               
                 LBLPhrases.Text = phrase;
             });
 
+            // GameMasteru podijeli originalni oblik fraze
             MessagingCenter.Subscribe<StartedSessionViewModel, string>(this, "originalPhraseFetch", (sender, phrase) =>
             {
-                TimerClock.HeightRequest = Constants.IconHeight;
-                TimerClock.Source = Constants.HourGlassImageSrc;
-                StartTimer(TimerClock);
                 LBLPhrases.Text = phrase;
             });          
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ViewModel.ConnectSessionCommand.Execute(null);                             
+            ViewModel.ConnectSessionCommand.Execute(null);          
         }
 
         public void AddPlayerButtons(string name, Color color, User player)
-        {
+        {         
             Button playerButton = new Button { Text = name };
             
             playerButton.SetBinding(Button.CommandProperty, new Binding("SendWinnerCommand"));
@@ -100,17 +113,32 @@ namespace Incohearent.Views
             playerButton.BackgroundColor = color;
             playerButton.TextColor = Constants.PlayerTextColor;
 
-            parentLayout = sessionStack;
+            parentLayout = buttonStack;
             parentLayout.Children.Add(playerButton);
         }
 
-        public void StartTimer(Image timeClock)
-        {           
-            Device.StartTimer(TimeSpan.FromSeconds(60), () =>
+        public void SetupTimer(Image timeClock, User user, User gm)
+        {
+            timeClock.HeightRequest = Constants.IconHeight;
+            timeClock.Source = Constants.HourGlassImageSrc;
+
+            if (SessionTimer == null)
             {
-                timeClock.Source = Constants.AlarmImageSrc;
-                return false; // True = Repeat again, False = Stop the timer
-            });
+                SessionTimer = new SessionTimer(TimeSpan.FromSeconds(60), () =>
+                {
+                    timeClock.Source = Constants.AlarmImageSrc;
+                    DisplayAlert(Constants.TimeUpTitle, Constants.TimeUpInfo, "Got it!");
+                    if (user.PrivateAddress == gm.PrivateAddress)
+                        ViewModel.FetchPhrasesCommand.Execute(null);
+                });
+                SessionTimer.Start();
+            }
+
+            else
+            {
+                SessionTimer.Stop();
+                SessionTimer.Start();
+            }                            
         }
     }
 }

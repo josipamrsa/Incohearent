@@ -8,10 +8,10 @@
              x:Class="Incohearent.Views.SessionPage">
     <ContentPage.Content>
         <StackLayout x:Name="sessionStack">
-            <Image x:Name="TimerClock" VerticalOptions="Center" IsAnimationPlaying="True" />
-            <Label Text="Game time!" x:Name="LBLPhrases"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+            <Image x:Name="TimerClock" VerticalOptions="Center" HorizontalOptions="Center" IsAnimationPlaying="True" />
+            <Label Text="Game time!" x:Name="LBLPhrases" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium"/>
+            <StackLayout x:Name="buttonStack"></StackLayout>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

@@ -50,7 +50,7 @@ namespace Incohearent.Models
         //----Web server configuration----//
         public static string LocalWebServer = "http://localhost:44733/gameHub";
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
-        public static string NgrokServer = "https://6c2da49a5e05.ngrok.io/gameHub"; // testni server
+        public static string NgrokServer = "https://03a827e5ae40.ngrok.io/gameHub"; // testni server
 
         public static string ServerConfiguration = NgrokServer;
 
@@ -59,5 +59,11 @@ namespace Incohearent.Models
         public static string HourGlassImageSrc = "hourglass.gif";
         public static string AlarmImageSrc = "alarm.gif";
         public static int IconHeight = 50;
+
+        public static string DeclareWinnerTitle = "We have a winner!";
+        public static string DeclareWinnerInfo = "A shiny point for: ";
+
+        public static string TimeUpTitle = "Time's Up!";
+        public static string TimeUpInfo = "No one was worthy of a point...";
     }
 }

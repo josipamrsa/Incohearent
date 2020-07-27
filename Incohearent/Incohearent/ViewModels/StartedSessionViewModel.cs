@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -76,6 +77,11 @@ namespace Incohearent.ViewModels
                 MessagingCenter.Send(this, "listAllPlayers", PlayersInSession);
             });
 
+            hubConn.On<int>("SetupTimer", (code) =>
+            {
+                MessagingCenter.Send(this, "setupTimer", 60);
+            });
+
             hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseNotGenerated", phrase);
@@ -88,17 +94,19 @@ namespace Incohearent.ViewModels
 
             hubConn.On<User>("WinnerDeclared", (logged) =>
             {
-                if (logged.PrivateAddress == User.PrivateAddress) {
-                    MessagingCenter.Send(this, "notifyWinner", logged.Username);
+                if (logged.PrivateAddress == User.PrivateAddress) {                    
                     PlayerPoints.PointsWon++;
                 }
+                MessagingCenter.Send(this, "wonNotification", logged);
             });
         }
 
         private async Task SendInWinner(User player)
         {
-            if (player != null)
+            if (player!=null)
                 await hubConn.InvokeAsync("DeclareWinner", player);
+            else
+                await hubConn.InvokeAsync("DeclareWinner", GameMaster);
         }
 
         private async Task ConnectToSession(User u)
