@@ -37,9 +37,16 @@ namespace Incohearent.Views
 
             User = user;
             GameMaster = gameMaster;
-           
+
             ViewModel = new StartedSessionViewModel(User, GameMaster, sessionStore, pageStore);
-            
+
+            MessagingCenter.Subscribe<StartedSessionViewModel, Points>(this, "exitSession", (sender, points) => {              
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    Application.Current.MainPage = new NavigationPage(new EndcardPage(points, User));
+                }
+            });
+
             // Izlistaj igrače
             MessagingCenter.Subscribe<StartedSessionViewModel, List<User>>(this, "listAllPlayers", (sender, list) =>
             {
@@ -52,14 +59,12 @@ namespace Incohearent.Views
                 if (parentLayout != null) buttonStack.Children.Clear();
 
                 foreach (User player in list)
-                    AddPlayerButtons(player.Username, ColorScheme[rnd.Next(0, ColorScheme.Length)], player);
-
-                //AddPlayerButtons("No one", ColorScheme[rnd.Next(0, ColorScheme.Length)], null);
+                    AddPlayerButtons(player.Username, ColorScheme[rnd.Next(0, ColorScheme.Length)], player);               
             });
 
             // Pokreni timer
             MessagingCenter.Subscribe<StartedSessionViewModel, int>(this, "setupTimer", (sender, code) =>
-            {
+            {                
                 SetupTimer(TimerClock, User, GameMaster);
             });
 
@@ -98,8 +103,10 @@ namespace Incohearent.Views
         }
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            ViewModel.ConnectSessionCommand.Execute(null);          
+            base.OnAppearing();            
+            ViewModel.ConnectSessionCommand.Execute(null);
+            if (User.PrivateAddress == GameMaster.PrivateAddress)
+                BTNExitSession.IsVisible = true;
         }
 
         public void AddPlayerButtons(string name, Color color, User player)
@@ -124,7 +131,7 @@ namespace Incohearent.Views
 
             if (SessionTimer == null)
             {
-                SessionTimer = new SessionTimer(TimeSpan.FromSeconds(60), () =>
+                SessionTimer = new SessionTimer(TimeSpan.FromSeconds(20), () =>
                 {
                     timeClock.Source = Constants.AlarmImageSrc;
                     DisplayAlert(Constants.TimeUpTitle, Constants.TimeUpInfo, "Got it!");

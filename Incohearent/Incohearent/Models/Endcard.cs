@@ -23,12 +23,14 @@ namespace Incohearent.Models
     public class Points : User
     {
         public int PointsWon { get; set; }
+        public bool IsGameMaster { get; set; }
         public Points() { }
-        public Points(int points, string userAddr, string username)
+        public Points(int points, string userAddr, string username, bool gm)
         {
             PointsWon = points;
             this.PrivateAddress = userAddr;
             this.Username = username;
+            IsGameMaster = gm;
         }
     }
 }

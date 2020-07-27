@@ -7,9 +7,11 @@
              x:Class="Incohearent.Views.EndcardPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout x:Name="EndStack" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                <Label x:Name="LBLPlayerName" Text="Player name: " FontSize="Medium"></Label>
+                <Label x:Name="LBLPlayerPoints" Text="Player points: " FontSize="Medium"></Label>
+            </StackLayout>
+            <Button x:Name="BTNLobby" Text="Return to lobby" Command="{Binding ExitGameCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

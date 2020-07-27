@@ -71,7 +71,6 @@ namespace Incohearent.ViewModels
             if (!networkConnection.UserIsOnWifi()) MessagingCenter.Send(this, "notOnWifi", "OK");
             MessagingCenter.Send(this, "loggedIn", User);
         }
-
-        private async Task SignOutUser() { }
+       
     }
 }

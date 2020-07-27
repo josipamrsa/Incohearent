@@ -39,8 +39,8 @@ namespace Incohearent.ViewModels
         private HubConnection hubConn;
         public ICommand FetchPhrasesCommand { get; private set; }
         public ICommand ConnectSessionCommand { get; private set; }
-        public ICommand ListPlayersCommand { get; private set; }
         public ICommand SendWinnerCommand { get; private set; }
+        public ICommand EndSessionCommand { get; private set; }
         
         public StartedSessionViewModel(User user, User gm, ISessionStore ss, IPageService ps)
         {
@@ -52,13 +52,14 @@ namespace Incohearent.ViewModels
 
             Phrase = new PhoneticPhrases();
             PlayersInSession = new List<User>();
-            PlayerPoints = new Points(0, user.PrivateAddress, user.Username);
+            PlayerPoints = new Points(0, user.PrivateAddress, user.Username, false);
 
             hubConn = new HubConnectionBuilder().WithUrl(Constants.ServerConfiguration).Build();
 
             ConnectSessionCommand = new Command(async () => await ConnectToSession(User));         
             FetchPhrasesCommand = new Command(async () => await FetchPhrases(User, GameMaster, Phrase));
             SendWinnerCommand = new Command<User>(async (player) => await SendInWinner(player));
+            EndSessionCommand = new Command(async () => await EndSession(User));
 
             Session = new Session();
 
@@ -68,7 +69,8 @@ namespace Incohearent.ViewModels
             });
 
             hubConn.On<string>("OriginalPhraseFetched", (phrase) =>
-            {              
+            {
+                PlayerPoints.IsGameMaster = true;
                 MessagingCenter.Send(this, "originalPhraseFetch", phrase);              
             });
 
@@ -79,7 +81,7 @@ namespace Incohearent.ViewModels
 
             hubConn.On<int>("SetupTimer", (code) =>
             {
-                MessagingCenter.Send(this, "setupTimer", 60);
+                MessagingCenter.Send(this, "setupTimer", 0);
             });
 
             hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
@@ -99,6 +101,18 @@ namespace Incohearent.ViewModels
                 }
                 MessagingCenter.Send(this, "wonNotification", logged);
             });
+
+            hubConn.On<User>("DisconnectSession", async (logged) =>
+            {
+                MessagingCenter.Send(this, "exitSession", PlayerPoints);
+                await hubConn.StopAsync();
+            });
+        }
+
+        private async Task EndSession(User user)
+        {
+            await hubConn.InvokeAsync("DisconnectSession", user);
+            MessagingCenter.Send(this, "exitSession", PlayerPoints);
         }
 
         private async Task SendInWinner(User player)

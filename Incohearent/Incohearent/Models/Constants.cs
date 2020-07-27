@@ -52,7 +52,7 @@ namespace Incohearent.Models
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
         public static string NgrokServer = "https://03a827e5ae40.ngrok.io/gameHub"; // testni server
 
-        public static string ServerConfiguration = NgrokServer;
+        public static string ServerConfiguration = AzureWebServer;
 
         //----Session----//
         public static string NoOneWins = "No One (Womp Womp)";
@@ -65,5 +65,10 @@ namespace Incohearent.Models
 
         public static string TimeUpTitle = "Time's Up!";
         public static string TimeUpInfo = "No one was worthy of a point...";
+
+        //----Endcard----//
+        public static string PlayerName = "Player name: ";
+        public static string PlayerPoints = "Player points: ";
+        public static string GameMasterInfo = "Was Ringleader";
     }
 }
