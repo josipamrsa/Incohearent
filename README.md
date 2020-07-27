@@ -33,4 +33,4 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
 >> 22.7.2020. - Dynamically created elements for each player - GameMaster  
 >> 25.7.2020. - Game logic - GameMaster/player interaction, simple point system and timer  
 >> 26.7.2020. - Game logic - timer clock now controls the game flow  
->> 27.7.2020. - Game logic - end session, show statistic for other players
+>> 27.7.2020. - Game logic - end session, show statistic for other players, next up extensive testing and finishing up
