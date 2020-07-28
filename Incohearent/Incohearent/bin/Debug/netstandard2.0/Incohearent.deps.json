@@ -9,6 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "Incohearent/1.0.0": {
         "dependencies": {
+          "LiveXAML": "2.1.73",
           "Microsoft.AspNet.SignalR.Client": "2.4.1",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.Data.Sqlite.Core": "3.1.5",
@@ -21,6 +22,7 @@
           "Incohearent.dll": {}
         }
       },
+      "LiveXAML/2.1.73": {},
       "Microsoft.AspNet.SignalR.Client/2.4.1": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"
@@ -459,6 +461,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "LiveXAML/2.1.73": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WuyZAgaVvGIN4MoOR5VK3X8PFiCv3swffxzMd6Nf7cJIf32zCjbTgrkasY5K8NSNZ2U4y2nFgLAZ4oeqUvueEA==",
+      "path": "livexaml/2.1.73",
+      "hashPath": "livexaml.2.1.73.nupkg.sha512"
     },
     "Microsoft.AspNet.SignalR.Client/2.4.1": {
       "type": "package",

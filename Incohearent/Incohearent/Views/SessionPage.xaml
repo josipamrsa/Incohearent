@@ -8,9 +8,25 @@
              x:Class="Incohearent.Views.SessionPage">
     <ContentPage.Content>
         <StackLayout x:Name="sessionStack">
-            <Button x:Name="BTNExitSession" Text="End Game" IsVisible="False" Command="{Binding EndSessionCommand}"></Button>
-            <Image x:Name="TimerClock" VerticalOptions="Center" HorizontalOptions="Center" IsAnimationPlaying="True" Margin="0,0,0,10" />
-            <Label Text="Game time!" x:Name="LBLPhrases" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium"/>
+            <Button x:Name="BTNExitSession" 
+                    Text="End Game" 
+                    IsVisible="False" 
+                    Margin="50,10,50,0"
+                    Command="{Binding EndSessionCommand}"></Button>
+            
+            <Image x:Name="TimerClock" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   IsAnimationPlaying="True" 
+                   Margin="10,40,10,10" />
+            
+            <Label Text="Game time!" 
+                   x:Name="LBLPhrases" 
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,0"
+                   FontSize="Large"/>
+            
             <StackLayout x:Name="buttonStack"></StackLayout>
         </StackLayout>
         

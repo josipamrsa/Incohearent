@@ -1,7 +1,6 @@
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\bin\Debug\netstandard2.0\Incohearent.deps.json
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\bin\Debug\netstandard2.0\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.csprojAssemblyReference.cache
-C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Views\EndcardPage.xaml.g.cs
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Views\LobbyPage.xaml.g.cs
@@ -14,5 +13,6 @@ C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\bin\Debug\netst
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\ref\Incohearent.dll
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.pdb
+C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\Incohearent.csproj.CoreCompileInputs.cache
 C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\obj\Debug\netstandard2.0\XamlC.stamp

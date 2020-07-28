@@ -119,6 +119,7 @@ namespace Incohearent.Views
             playerButton.BindingContext = ViewModel;
             playerButton.BackgroundColor = color;
             playerButton.TextColor = Constants.PlayerTextColor;
+            playerButton.Margin = new Thickness(60, 10, 60, 0);
 
             parentLayout = buttonStack;
             parentLayout.Children.Add(playerButton);

@@ -4,14 +4,31 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="The Finish Line"
              x:Class="Incohearent.Views.EndcardPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout x:Name="EndStack" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
-                <Label x:Name="LBLPlayerName" Text="Player name: " FontSize="Medium"></Label>
-                <Label x:Name="LBLPlayerPoints" Text="Player points: " FontSize="Medium"></Label>
+            <StackLayout x:Name="EndStack" 
+                         Margin="0,20,0,0"
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="Center">
+
+                <Label x:Name="LBLPlayerName" 
+                       Text="Player name: " 
+                       TextColor="MediumVioletRed"
+                       FontSize="Medium"></Label>
+
+                <Label x:Name="LBLPlayerPoints" 
+                       Text="Player points: " 
+                       TextColor="RoyalBlue"
+                       FontSize="Medium"></Label>
+
             </StackLayout>
-            <Button x:Name="BTNLobby" Text="Return to lobby" Command="{Binding ExitGameCommand}"></Button>
+
+            <Button x:Name="BTNLobby" 
+                    BackgroundColor="SkyBlue"
+                    Text="Exit Stage Left" 
+                    Command="{Binding ExitGameCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

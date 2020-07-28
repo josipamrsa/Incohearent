@@ -25,7 +25,7 @@ namespace Incohearent.Models
         };
 
         //----Login banner--//
-        public static int LoginIconHeight = 180;
+        public static int LoginIconHeight = 150;
 
         //----Network connection state--//
         public static string NoInternetText = "Oh no! You're not connected to the Internet!";

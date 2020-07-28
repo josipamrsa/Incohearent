@@ -42,6 +42,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "LiveXAML": {
+              "target": "Package",
+              "version": "[2.1.73, )"
+            },
             "Microsoft.AspNet.SignalR.Client": {
               "target": "Package",
               "version": "[2.4.1, )"

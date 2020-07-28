@@ -7,17 +7,24 @@
              x:Class="Incohearent.Views.LoginPage">
     
     <ContentPage.Content>
-        <StackLayout x:Name="MasterLayout">
-            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="MasterLayout"> 
+            <StackLayout x:Name="LogoStack" VerticalOptions="CenterAndExpand">
                 <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Crimson" />
-                <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,0,40" />
+                <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,0,0" />
             </StackLayout>
 
             <StackLayout x:Name="LoginEntriesStack" VerticalOptions="FillAndExpand">
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true"></ActivityIndicator>
-                <Label x:Name="LBLUser" Text="Pick a cool name: " />
-                <Entry x:Name="EnUser" Placeholder="Type it here..." Text="{Binding Path=User.Username}"/>
-                <Button x:Name="BTNSignIn" Text="Let's Play!" Command="{Binding SignInUserCommand}" BackgroundColor="SkyBlue" />
+                <Label x:Name="LBLUser" Text="Pick a cool name: " HorizontalOptions="Center" FontSize="Medium" TextColor="Crimson" />
+                
+                <Entry x:Name="EnUser" 
+                       Placeholder="Type it here..." 
+                       Text="{Binding Path=User.Username}" 
+                       HorizontalOptions="Center" 
+                       BackgroundColor="LightYellow" 
+                       WidthRequest="250" />
+                
+                <Button x:Name="BTNSignIn" Text="Let's Play!" Command="{Binding SignInUserCommand}" BackgroundColor="SkyBlue" Margin="40,50,40,0"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

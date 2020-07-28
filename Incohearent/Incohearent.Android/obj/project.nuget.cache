@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A4uPMa0tRT48mwYKJ4pbHWSgSnH8wr0NSkG4vUxyL+m7msYUBjWB2FjOWOJ9kW4c2cH3hpqD1GZSZMKLk30auQ==",
+  "dgSpecHash": "OXUeWjLeTt/AIo2EFbDg2EDFicITQqDb7KjKyb/egv2Luas1AXfWaj5dL+mHJ/X0dzVwivHZilCPxj87jBKw7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\PMF\\Desktop\\Projekt\\Incohearent\\Incohearent\\Incohearent.Android\\Incohearent.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PMF\\.nuget\\packages\\livexaml\\2.1.73\\livexaml.2.1.73.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\microsoft.aspnet.signalr.client\\2.4.1\\microsoft.aspnet.signalr.client.2.4.1.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.5\\microsoft.aspnetcore.connections.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\PMF\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\3.1.5\\microsoft.aspnetcore.http.connections.client.3.1.5.nupkg.sha512",

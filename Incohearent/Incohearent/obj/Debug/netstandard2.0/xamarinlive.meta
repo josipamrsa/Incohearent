@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XamlProjectMeta xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Files>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\App.xaml</FilePath>
+      <Hash>17-DC-B3-B9-E9-B0-FB-FD-C4-9D-AB-A5-E9-7C-8B-AE</Hash>
+      <Properties />
+    </XamlFileMeta>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\MainPage.xaml</FilePath>
+      <Hash>A0-8D-B6-5B-83-C1-81-19-41-E7-B1-CF-1F-5A-58-49</Hash>
+      <Properties />
+    </XamlFileMeta>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\Views\EndcardPage.xaml</FilePath>
+      <Hash>6A-BB-59-9E-14-0C-3E-C7-03-DD-7C-E0-77-D6-81-B8</Hash>
+      <Properties>
+        <string>Title</string>
+      </Properties>
+    </XamlFileMeta>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\Views\LobbyPage.xaml</FilePath>
+      <Hash>68-01-9C-57-9C-CF-0A-23-2B-86-B7-4B-DD-97-37-77</Hash>
+      <Properties>
+        <string>Title</string>
+      </Properties>
+    </XamlFileMeta>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\Views\LoginPage.xaml</FilePath>
+      <Hash>23-38-E1-37-36-34-46-DB-8E-70-0A-E8-62-EB-B5-B7</Hash>
+      <Properties />
+    </XamlFileMeta>
+    <XamlFileMeta>
+      <FilePath>C:\Users\PMF\Desktop\Projekt\Incohearent\Incohearent\Incohearent\Views\SessionPage.xaml</FilePath>
+      <Hash>36-B2-EE-CD-18-4E-E2-8E-39-D1-9A-5B-0D-3E-32-3B</Hash>
+      <Properties>
+        <string>Title</string>
+      </Properties>
+    </XamlFileMeta>
+  </Files>
+</XamlProjectMeta>
