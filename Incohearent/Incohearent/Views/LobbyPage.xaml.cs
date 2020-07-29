@@ -23,6 +23,7 @@ namespace Incohearent.Views
         }
 
         public User LoggedUser { get; set; }
+        public bool MoreThanOnePlayer { get; set; }
 
         public LobbyPage(User user)
         {
@@ -42,26 +43,29 @@ namespace Incohearent.Views
 
             MessagingCenter.Subscribe<LobbyAssignViewModel, string>(this, "exitApp", (sender, info) => {
                 if (Device.RuntimePlatform == Device.Android)
-                {
-                    // TODO - dokuciti misterij duplih poruka, ovo je zasad "rjesenje"
+                {                   
                     Environment.Exit(0); 
                 }
             });
 
+            MessagingCenter.Subscribe<LobbyAssignViewModel, bool>(this, "lessThanTwo", (sender, less) => {
+                DisplayAlert(Constants.OnePlayerOnlyDetectedTitle, Constants.OnePlayerOnlyDetectedText, "Got it!");          
+            });
+           
             MessagingCenter.Subscribe<LobbyAssignViewModel, User>(this, "sessionStart", (sender, gameMaster) =>
             {               
                 if (Device.RuntimePlatform == Device.Android)
                 {
                     Application.Current.MainPage = new NavigationPage(new SessionPage(LoggedUser, gameMaster));
                 }
-            });
+            });           
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             LBLPlayerConnections.Text = "";
-            ViewModel.ConnectToLobbyCommand.Execute(null);                    
+            ViewModel.ConnectToLobbyCommand.Execute(null);        
         }       
     }
 }

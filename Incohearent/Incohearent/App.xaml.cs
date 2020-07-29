@@ -23,12 +23,7 @@ namespace Incohearent
 
         // REST API
         static RestApiService restApi;
-
-        // User Database
-        //static LoginController udc;
-        //static LobbyController ldc;
-
-
+        
         public static RestApiService RestApi
         {
             get
@@ -63,6 +58,7 @@ namespace Incohearent
             label.IsVisible = false;
             hasInternet = true;
             currentPage = page;
+
             if (timer == null)
             {
                 timer = new Timer((e) => {

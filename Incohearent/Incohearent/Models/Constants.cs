@@ -41,7 +41,10 @@ namespace Incohearent.Models
         //----Login fail----//
         public static string LoginFailedTitle = "Tell Us Your Name First";
         public static string LoginFailedText = "We need to know your screen name first, before we let you in!";
-        
+
+        public static string LoginFailedUnknownTitle = "Hmm?";
+        public static string LoginFailedUnknownText = "What an odd error to have.";
+
 
         //----Session warning----//
         public static string OnePlayerOnlyDetectedTitle = "Introvert Much?";
@@ -50,9 +53,9 @@ namespace Incohearent.Models
         //----Web server configuration----//
         public static string LocalWebServer = "http://localhost:44733/gameHub";
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
-        public static string NgrokServer = "https://03a827e5ae40.ngrok.io/gameHub"; // testni server
+        public static string NgrokServer = "https://d3de29fe118c.ngrok.io/gameHub"; // testni server
 
-        public static string ServerConfiguration = AzureWebServer;
+        public static string ServerConfiguration = NgrokServer;
 
         //----Session----//
         public static string NoOneWins = "No One (Womp Womp)";

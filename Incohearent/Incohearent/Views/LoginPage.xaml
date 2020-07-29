@@ -7,9 +7,9 @@
              x:Class="Incohearent.Views.LoginPage">
     
     <ContentPage.Content>
-        <StackLayout x:Name="MasterLayout"> 
+        <StackLayout x:Name="MasterLayout">
+            <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Crimson" />
             <StackLayout x:Name="LogoStack" VerticalOptions="CenterAndExpand">
-                <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Crimson" />
                 <Image x:Name="LoginIcon" Source="loginbanner.png" Margin="0,0,0,0" />
             </StackLayout>
 

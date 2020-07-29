@@ -35,11 +35,15 @@ namespace Incohearent.Views
             });
 
             MessagingCenter.Subscribe<LoginViewModel, string>(this, "ipNotFound", (sender, user) => {
-                DisplayAlert(Constants.LoginFailedTitle, Constants.LoginFailedText, "Got it!");
+                DisplayAlert(Constants.LoginFailedUnknownTitle, Constants.LoginFailedUnknownText, "Well, okay.");
             });
 
             MessagingCenter.Subscribe<LoginViewModel, string>(this, "notOnWifi", (sender, info) => {
                 DisplayAlert(Constants.NotOnWifiTitle, Constants.NotOnWifiWarning, "Got it!");
+            });
+
+            MessagingCenter.Subscribe<LoginViewModel, string>(this, "networkFailure", (sender, info) => {
+                DisplayAlert(Constants.NoInternetTitle, Constants.NoInternetWarning, "Got it!");
             });
 
             MessagingCenter.Subscribe<LoginViewModel, User>(this, "loggedIn", (sender, user) =>

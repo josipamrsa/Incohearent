@@ -48,6 +48,12 @@ namespace Incohearent.ViewModels
                 return;
             }
 
+            if (!networkConnection.IsConnected)
+            {
+                MessagingCenter.Send(this, "networkFailure", "OK");
+                return;
+            }
+
             User.PublicAddress = App.RestApi.GetPublicIpAddress();
 
             if (!string.IsNullOrEmpty(networkConnection.GetIpAddressDevice()))

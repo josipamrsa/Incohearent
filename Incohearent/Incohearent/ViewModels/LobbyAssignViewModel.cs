@@ -21,6 +21,7 @@ namespace Incohearent.ViewModels
         private ILobbyStore lobbyStore;
         private IPageService pageService;
         
+        public int PlayerCount { get; set; }
         public User User { get; private set; }
         public Lobby Lobby { get; private set; }
         
@@ -38,12 +39,14 @@ namespace Incohearent.ViewModels
         public ICommand DisconnectFromLobbyCommand { get; private set; }
         public ICommand SaveLobbyCommand { get; private set; }
         public ICommand StartSessionCommand { get; private set; }
+        public ICommand CountPlayersCommand { get; private set; }
 
         public LobbyAssignViewModel(User user, ILobbyStore ls, IPageService ps)
         {
             lobbyStore = ls;
             pageService = ps;
             User = user;
+            PlayerCount = 0;
            
             hubConn = new HubConnectionBuilder().WithUrl(Constants.ServerConfiguration).Build();
 
@@ -61,21 +64,28 @@ namespace Incohearent.ViewModels
             });
 
             hubConn.On<User>("LeaveLobby", (loggedUser) =>
-            {               
+            {
                 MessagingCenter.Send(this, "leftLobby", $"User {loggedUser.Username} has left the lobby."); 
             });
 
             hubConn.On<User>("StartGame", async (gameMaster) =>
-            {
-                MessagingCenter.Send(this, "sessionStart", gameMaster);
-                await hubConn.StopAsync();
+            {           
+                if (PlayerCount<2) { MessagingCenter.Send(this, "lessThanTwo", true); }
+                else {
+                    MessagingCenter.Send(this, "sessionStart", gameMaster);
+                    await hubConn.StopAsync();
+                }                                    
+            });
+
+            hubConn.On<int>("NumberOfPlayers", (amount) => { 
+                PlayerCount = amount;              
             });
         }
-      
+       
         private async Task StartSession(User user)
         {
             await hubConn.InvokeAsync("StartGame", user);
-            await hubConn.StopAsync();
+            //await hubConn.StopAsync();
         }
 
         private async Task ConnectToLobby(User user)
