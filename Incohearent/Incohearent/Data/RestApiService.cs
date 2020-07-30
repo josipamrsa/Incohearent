@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using System.Text;
 
 
-
 namespace Incohearent.Data
 {
     public class RestApiService
@@ -33,6 +32,7 @@ namespace Incohearent.Data
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
         }
 
+        // Dohvaća javnu IP adresu
         public string GetPublicIpAddress()
         {
             var request = (HttpWebRequest)WebRequest.Create("http://ifconfig.me");

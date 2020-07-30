@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.Models
 {
+    // Model - fraze
     public class PhoneticPhrases
     {
         [PrimaryKey]

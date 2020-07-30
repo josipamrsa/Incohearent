@@ -23,8 +23,11 @@ using Xamarin.Essentials;
 namespace Incohearent.Droid.Data
 {
     public class NetworkConnection : INetworkConnection
-    {              
+    {             
+        // Metode provjere povezanosti na mrežu
         public bool IsConnected { get; set; }
+        
+        // Provjeri povezanost na mrežu
         public void CheckNetworkConnection()
         {
             var ConnMan = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
@@ -41,6 +44,7 @@ namespace Incohearent.Droid.Data
 
         }
         
+        // Dohvati interni IP ako je na WiFi-ju
         public string GetIpAddressDevice()
         {
             WifiManager wifiMan = (WifiManager)(Application.Context.GetSystemService(Context.WifiService));
@@ -57,6 +61,7 @@ namespace Incohearent.Droid.Data
             return ipDevice;
         }
 
+        // Dohvati interni IP ako nije na WiFi-ju
         public string GetIPAddressCellularNetwork()
         {
             IPAddress[] adresses = Dns.GetHostAddresses(Dns.GetHostName());
@@ -64,6 +69,7 @@ namespace Incohearent.Droid.Data
             else { return null; }
         }
 
+        // Provjeri stanje povezanosti na WiFi
         public bool UserIsOnWifi()
         {
             bool userOnWifi = false;

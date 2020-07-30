@@ -12,11 +12,11 @@ namespace Incohearent.ViewModels
 {
     public class EndcardDisplayViewModel : IncohearentBaseViewModel
     {
-        public Points Points { get; private set; }
-        public ICommand ExitGameCommand { get; private set; }
+        public Points Points { get; private set; }              // Bodovi korisnika
+        public ICommand ExitGameCommand { get; private set; }   // Izlaz iz aplikacije
         
 
-        public EndcardDisplayViewModel(Points p)
+        public EndcardDisplayViewModel(Points p) // ViewModel konstruktor za poziv iz Viewa
         {
             Points = p;
             ExitGameCommand = new Command(async () => await Task.Run(() => Environment.Exit(0)));

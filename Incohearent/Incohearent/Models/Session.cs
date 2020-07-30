@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.Models
 {   
+    // Model - zapis o sesijama
     public class Session
     {
         [PrimaryKey]

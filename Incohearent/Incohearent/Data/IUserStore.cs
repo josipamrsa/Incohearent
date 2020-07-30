@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Incohearent.Data
 {
+    // Interface - rad s tablicom korisnika
     public interface IUserStore
     {
         Task<IEnumerable<User>> GetUsersAsync();

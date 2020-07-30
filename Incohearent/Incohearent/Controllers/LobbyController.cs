@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace Incohearent.Controllers
 {
+    // Metode za upravljanje zapisima o Lobbyju
     public class LobbyController : ILobbyStore
     {       
         SQLiteAsyncConnection conn;

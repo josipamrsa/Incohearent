@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Incohearent.Controllers
 {
+    // Metode za upravljanje zapisima o Sessionu (neiskorišteno zasad)
     public class SessionController : ISessionStore
     {
         SQLiteAsyncConnection conn;

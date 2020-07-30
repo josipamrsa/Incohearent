@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.Models
 {
+    // Model - zapis o lobbyjima
     public class Lobby
     {
         [PrimaryKey]

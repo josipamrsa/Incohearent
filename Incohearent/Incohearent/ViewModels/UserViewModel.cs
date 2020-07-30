@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.ViewModels
 {
+    // MVVM - Praćenje promjena u vrijednosti svojstva za User model
     public class UserViewModel : IncohearentBaseViewModel
     {
         public int Id { get; set; }

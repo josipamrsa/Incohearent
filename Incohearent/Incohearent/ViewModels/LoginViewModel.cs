@@ -11,13 +11,14 @@ using Xamarin.Forms;
 
 namespace Incohearent.ViewModels
 {
+    // Upravljanje Loginom
     public class LoginViewModel : IncohearentBaseViewModel
     {
-        private UserViewModel userVm;
-        private IUserStore userStore;
-        private IPageService pageService;
-        
-        public User User { get; private set; }
+        private UserViewModel userVm;           // ViewModel svojstvo za poziv iz Viewa
+        private IUserStore userStore;           // Metode za rad s tablicom User modela u bazi podataka 
+        private IPageService pageService;       // Metode za rad sa obavijestima (neiskorišteno)
+
+        public User User { get; private set; }  // Korisnik
        
         public UserViewModel UserVm
         {
@@ -28,7 +29,7 @@ namespace Incohearent.ViewModels
             }
         }
 
-        public ICommand SignInUserCommand { get; private set; }
+        public ICommand SignInUserCommand { get; private set; } // Naredba za login u aplikaciju
 
         public LoginViewModel(IUserStore us, IPageService ps)
         { 
@@ -40,22 +41,27 @@ namespace Incohearent.ViewModels
 
         private async Task SignInUser()
         {
-            var networkConnection = DependencyService.Get<INetworkConnection>();
+            // Dohvati metode za rad s mrežom
+            var networkConnection = DependencyService.Get<INetworkConnection>(); 
 
+            // Provjera je li polje korisničkog imena prazno
             if (String.IsNullOrWhiteSpace(User.Username))
             {
                 MessagingCenter.Send(this, "loginFail", "OK");
                 return;
             }
 
+            // Provjera je li korisnik povezan u mrežu
             if (!networkConnection.IsConnected)
             {
                 MessagingCenter.Send(this, "networkFailure", "OK");
                 return;
             }
 
+            // Javna adresa korisnika
             User.PublicAddress = App.RestApi.GetPublicIpAddress();
 
+            // Pokušaj dohvatiti preko WiFi-ja, a ako nije na WiFi-ju (mobilna mreža) onda dohvati preko DNS-a
             if (!string.IsNullOrEmpty(networkConnection.GetIpAddressDevice()))
                 User.PrivateAddress = networkConnection.GetIpAddressDevice();
             else if (!string.IsNullOrEmpty(networkConnection.GetIPAddressCellularNetwork()))
@@ -66,14 +72,12 @@ namespace Incohearent.ViewModels
                 return;
             }
 
+            // Spremi zapis u bazu podataka
             User.LoggedIn = true;
-
             if (User.UserId == 0)
                 await userStore.AddUser(User);
 
-            //else            
-            //    await userStore.UpdateUser(User);            
-
+            // Obavijesti korisnika za spajanje na WiFi
             if (!networkConnection.UserIsOnWifi()) MessagingCenter.Send(this, "notOnWifi", "OK");
             MessagingCenter.Send(this, "loggedIn", User);
         }

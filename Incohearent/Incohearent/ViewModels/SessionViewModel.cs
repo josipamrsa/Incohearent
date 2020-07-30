@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.ViewModels
 {
+    // MVVM - Praćenje promjena u vrijednosti svojstva za Session model
     public class SessionViewModel : IncohearentBaseViewModel
     {
         public int Id;

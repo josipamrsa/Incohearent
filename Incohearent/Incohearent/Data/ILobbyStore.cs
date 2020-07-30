@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Incohearent.Data
 {
+    // Interface za Lobby metode
     public interface ILobbyStore
     {
         Task<Lobby> GetLobby(int id);

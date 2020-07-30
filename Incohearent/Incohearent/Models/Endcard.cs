@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Incohearent.Models
 {
+    // Model - statistika korisnika
     public class Endcard
     {       
         public int SessionId { get; set; }

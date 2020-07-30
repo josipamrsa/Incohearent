@@ -6,6 +6,7 @@ using Xamarin.Forms;
 
 namespace Incohearent.Data
 {
+    // Metode za rad s obavijestima (i samom stranicom) (neiskorišteno zasad)
     public class PageService : IPageService
     {
         // Prikazat ce sve poruke koje pristizu

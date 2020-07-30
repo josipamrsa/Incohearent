@@ -15,17 +15,17 @@ namespace Incohearent.ViewModels
 {
     public class StartedSessionViewModel : IncohearentBaseViewModel
     {
-        private SessionViewModel sessionVm;
-        private ISessionStore sessionStore;
-        private IPageService pageService;
-        
-        public User User { get; private set; }
-        public User GameMaster { get; private set; }
-        public Session Session { get; private set; }
-        public PhoneticPhrases Phrase { get; private set; }
-        public List<User> PlayersInSession { get; private set; }
+        private SessionViewModel sessionVm;     // ViewModel svojstvo za poziv iz Viewa
+        private ISessionStore sessionStore;     // Metode za rad s tablicom Session modela u bazi podataka (trenutno neiskorišteno)
+        private IPageService pageService;       // Metode za rad sa obavijestima (neiskorišteno)
 
-        public Points PlayerPoints { get; private set; }
+        public User User { get; private set; }                      // Korisnik
+        public User GameMaster { get; private set; }                // Sudac - GameMaster
+        public Session Session { get; private set; }                // Sesija
+        public PhoneticPhrases Phrase { get; private set; }         // Dobivena fraza
+        public List<User> PlayersInSession { get; private set; }    // Igrači u sesiji
+
+        public Points PlayerPoints { get; private set; }            // Broj bodova igrača
 
         public SessionViewModel SessionVm
         {
@@ -36,11 +36,11 @@ namespace Incohearent.ViewModels
             }
         }
 
-        private HubConnection hubConn;
-        public ICommand FetchPhrasesCommand { get; private set; }
-        public ICommand ConnectSessionCommand { get; private set; }
-        public ICommand SendWinnerCommand { get; private set; }
-        public ICommand EndSessionCommand { get; private set; }
+        private HubConnection hubConn; // Veza na Hub
+        public ICommand FetchPhrasesCommand { get; private set; }       // Dohvati frazu
+        public ICommand ConnectSessionCommand { get; private set; }     // Spoji u sesiju
+        public ICommand SendWinnerCommand { get; private set; }         // Obavijest o igraču koji je pobjednik runde
+        public ICommand EndSessionCommand { get; private set; }         // Izlaz iz sesije
         
         public StartedSessionViewModel(User user, User gm, ISessionStore ss, IPageService ps)
         {
@@ -63,37 +63,46 @@ namespace Incohearent.ViewModels
 
             Session = new Session();
 
+            //----PORUKE----//
+
+            // Dobivanje izokrenute fraze za ostale igrače
             hubConn.On<string>("PhrasesGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseGenerated", phrase);
             });
 
+            // Dobivanje originalne fraze za suca
             hubConn.On<string>("OriginalPhraseFetched", (phrase) =>
             {
                 PlayerPoints.IsGameMaster = true;
                 MessagingCenter.Send(this, "originalPhraseFetch", phrase);              
             });
 
+            // Izlistavanje svih aktivnih igrača
             hubConn.On<int>("ListAllPlayers", (code) =>
             {
                 MessagingCenter.Send(this, "listAllPlayers", PlayersInSession);
             });
 
+            // Postavljanje timera
             hubConn.On<int>("SetupTimer", (code) =>
             {
                 MessagingCenter.Send(this, "setupTimer", 0);
             });
 
+            // Kada generiranje fraze nije uspješno, generiraj novu
             hubConn.On<PhoneticPhrases>("PhrasesNotGenerated", (phrase) =>
             {
                 MessagingCenter.Send(this, "phraseNotGenerated", phrase);
             });
 
+            // Spoji u sesiju
             hubConn.On<User>("ConnectSession", (logged) =>
             {               
                 PlayersInSession.Add(logged);
             });
 
+            // Proglašenje pobjednika
             hubConn.On<User>("WinnerDeclared", (logged) =>
             {
                 if (logged.PrivateAddress == User.PrivateAddress) {                    
@@ -102,6 +111,7 @@ namespace Incohearent.ViewModels
                 MessagingCenter.Send(this, "wonNotification", logged);
             });
 
+            // Izlaz iz sesije
             hubConn.On<User>("DisconnectSession", async (logged) =>
             {
                 MessagingCenter.Send(this, "exitSession", PlayerPoints);
@@ -109,12 +119,16 @@ namespace Incohearent.ViewModels
             });
         }
 
+        //----METODE----//
+
+        // Izlaz iz sesije
         private async Task EndSession(User user)
         {
             await hubConn.InvokeAsync("DisconnectSession", user);
             MessagingCenter.Send(this, "exitSession", PlayerPoints);
         }
 
+        // Proglasi pobjednika
         private async Task SendInWinner(User player)
         {
             if (player!=null)
@@ -123,6 +137,7 @@ namespace Incohearent.ViewModels
                 await hubConn.InvokeAsync("DeclareWinner", GameMaster);
         }
 
+        // Spoji u sesiju
         private async Task ConnectToSession(User u)
         {
             await hubConn.StartAsync();
@@ -130,6 +145,7 @@ namespace Incohearent.ViewModels
             MessagingCenter.Send(this, "userSession", "session");
         }
 
+        // Dohvati frazu
         private async Task FetchPhrases(User user, User gm, PhoneticPhrases phrase)
         {
             await hubConn.InvokeAsync("GeneratePhrases", user, gm, phrase);                        

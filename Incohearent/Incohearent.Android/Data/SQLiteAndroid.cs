@@ -15,12 +15,14 @@ using System.Reflection;
 using Incohearent.Droid.Data;
 using SQLite;
 
-[assembly: Xamarin.Forms.Dependency(typeof(SQLiteAndroid))] // potreban dependency
+[assembly: Xamarin.Forms.Dependency(typeof(SQLiteAndroid))] // Potreban dependency
 namespace Incohearent.Droid.Data
 { 
     public class SQLiteAndroid : ISQlite
     {
         public SQLiteAndroid() { }
+
+        // Stvaranje baze podataka na Android uređaju
         public SQLiteAsyncConnection GetConnection()
         {
             var sqliteFilename = "IncohearentDB";

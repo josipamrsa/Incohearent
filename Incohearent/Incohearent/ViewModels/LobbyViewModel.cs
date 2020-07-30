@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Incohearent.ViewModels
 {
+    // MVVM - Praćenje promjena u vrijednosti svojstva za Lobby model
     public class LobbyViewModel : IncohearentBaseViewModel
     {
         public string Ip { get; set; }       

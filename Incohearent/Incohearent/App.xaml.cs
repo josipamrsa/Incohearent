@@ -36,7 +36,7 @@ namespace Incohearent
         public App()
         {
             InitializeComponent();
-            MainPage = new LoginPage();
+            MainPage = new LoginPage(); // Što je početna stranica
         }
 
         protected override void OnStart()
@@ -51,14 +51,17 @@ namespace Incohearent
         {
         }
 
+        // Pokretanje provjere povezanosti na mrežu
         public static void StartCheckIfInternet(Label label, Page page)
         {
+            // Potrebne kontrole za prikaz statusa mreže
             labelScreen = label;
             label.Text = Constants.NoInternetText;
             label.IsVisible = false;
             hasInternet = true;
             currentPage = page;
 
+            // Provjeravaj svakih 10 sekundi stanje povezanosti na mrežu
             if (timer == null)
             {
                 timer = new Timer((e) => {
@@ -67,6 +70,7 @@ namespace Incohearent
             }
         }
 
+        // Metoda provjere povezanosti na mrežu
         private static void CheckIfInternetOverTime()
         {
             var networkConnection = DependencyService.Get<INetworkConnection>();
@@ -103,6 +107,7 @@ namespace Incohearent
             return networkConnection.IsConnected;
         }
 
+        // Async verzija gornje metode
         public static async Task<bool> CheckIfInternetAlertAsync()
         {
             var networkConnection = DependencyService.Get<INetworkConnection>();
@@ -118,6 +123,7 @@ namespace Incohearent
             return true;
         }
 
+        // Prikaz obavijesti o stanju povezanosti na mrežu
         private static async Task ShowDisplayAlert()
         {
             noInternetShow = false;

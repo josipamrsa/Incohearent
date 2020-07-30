@@ -8,6 +8,7 @@ using Xamarin.Forms;
 
 namespace Incohearent.Models
 {
+    // Model - korisnik
     public class User
     {       
         [PrimaryKey]

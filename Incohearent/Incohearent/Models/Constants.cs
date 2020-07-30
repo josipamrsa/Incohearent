@@ -5,6 +5,7 @@ using Xamarin.Forms;
 
 namespace Incohearent.Models
 {
+    // Postavke aplikacije
     public class Constants
     {
         public static bool IsDev = true; // debug
