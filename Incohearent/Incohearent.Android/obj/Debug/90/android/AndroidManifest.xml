@@ -8,6 +8,7 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
   <application android:label="Incohearent.Android" android:icon="@mipmap/icon" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
     <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/icon" android:label="Incohearent" android:theme="@style/MainTheme" android:name="crc6411a1c771d2c896f0.MainActivity">
       <intent-filter>

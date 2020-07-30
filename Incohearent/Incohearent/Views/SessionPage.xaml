@@ -18,13 +18,13 @@
                    VerticalOptions="Center" 
                    HorizontalOptions="Center" 
                    IsAnimationPlaying="True" 
-                   Margin="10,40,10,10" />
+                   Margin="10,40,0,10" />
             
             <Label Text="Game time!" 
                    x:Name="LBLPhrases" 
-                   VerticalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand"  
                    HorizontalOptions="Center" 
-                   Margin="0,20,0,0"
+                   Margin="0,70,0,0"
                    FontSize="Large"/>
             
             <StackLayout x:Name="buttonStack"></StackLayout>

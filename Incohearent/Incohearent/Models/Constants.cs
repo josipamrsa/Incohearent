@@ -53,7 +53,7 @@ namespace Incohearent.Models
         //----Web server configuration----//
         public static string LocalWebServer = "http://localhost:44733/gameHub";
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
-        public static string NgrokServer = "https://d3de29fe118c.ngrok.io/gameHub"; // testni server
+        public static string NgrokServer = "https://66b6df9121e8.ngrok.io/gameHub"; // testni server
 
         public static string ServerConfiguration = NgrokServer;
 

@@ -132,7 +132,7 @@ namespace Incohearent.Views
 
             if (SessionTimer == null)
             {
-                SessionTimer = new SessionTimer(TimeSpan.FromSeconds(20), () =>
+                SessionTimer = new SessionTimer(TimeSpan.FromSeconds(120), () =>
                 {
                     timeClock.Source = Constants.AlarmImageSrc;
                     DisplayAlert(Constants.TimeUpTitle, Constants.TimeUpInfo, "Got it!");
