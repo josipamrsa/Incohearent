@@ -56,7 +56,7 @@ namespace Incohearent.Models
         public static string AzureWebServer = "https://incohearentwebserver.azurewebsites.net/gameHub";
         public static string NgrokServer = "https://66b6df9121e8.ngrok.io/gameHub"; // testni server
 
-        public static string ServerConfiguration = NgrokServer;
+        public static string ServerConfiguration = AzureWebServer;
 
         //----Session----//
         public static string NoOneWins = "No One (Womp Womp)";
