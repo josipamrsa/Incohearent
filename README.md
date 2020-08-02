@@ -16,6 +16,23 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
 * Frontend
   * XamarinForms
 
+## Installation (for testing purposes)
+
+* Download the Incohearent server (link above) and run it locally or on your own server
+* Download the source code for this app and open it (Visual Studio 2019)
+* Make sure to pick a server configuration in app settings (preferably setup the Azure server)
+  * All app settings are located in file Constants.cs
+* You can debug on a physical device or emulator, or just export the APK file  
+
+## How to play
+
+Make sure your group is using the same WiFi network, otherwise you will not be able to see
+players in your lobby. Log into the app using whichever name you want. Once all your players
+are logged in, only one player should start the game (bug currently). The person that started
+the game will take on a role of judge (original phrase will be displayed to him), and the rest will be earning points depending on their
+answers (guessing the scrambled phrase). The game continues for as long as you want. If you wish to end the game, the judge
+should stop the game.
+
 
 ## Notes (remove later)
 >> 7.6.2020. - Implementation of general network connection check  
