@@ -10,9 +10,8 @@ This is a C#/Xamarin project which is a mobile game app inspired by the card gam
   * SQLite
 * Backend
   * Azure
-  * ASP.NET
+  * ASP.NET (C#)
   * SignalR
-  * C#
 * Frontend
   * XamarinForms
 
